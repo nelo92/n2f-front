@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import {MatDatepicker, MatDatepickerInputEvent} from "@angular/material/datepicker";
 //import { MatDialog } from '@angular/material/dialog';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
@@ -15,6 +15,7 @@ import { NotedefraisService } from "../notedefrais.service"
 import { ConfirmDialogComponent } from "../../confirm-dialog/confirm-dialog.component";
 
 import { MY_FORMATS_MM_YYYY, moment } from "../../material.module";
+import {Moment} from "moment";
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
@@ -86,7 +87,7 @@ export class ViewComponent implements OnInit {
     this.date.setValue(ctrlValue);
   }
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) { 
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
