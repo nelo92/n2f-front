@@ -18,11 +18,10 @@
               (yearSelected)="chosenYearHandler($event)"
               (monthSelected)="chosenMonthHandler($event, dp)"
               panelClass="example-month-picker">
-            </mat-datepicker>
-            
+            </mat-datepicker>            
           </div>
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary btn-sm" (click)=onExport()>Export</button>
+            <button type="button" class="btn btn-primary btn-sm" (click)="onExport()">Export</button>
           </div>
 
         </div>

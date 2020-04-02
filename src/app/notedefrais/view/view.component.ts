@@ -1,15 +1,11 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { FormGroup, FormControl,  FormBuilder, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
-//import { map, tap } from 'rxjs/operators';
-//import { formatDate } from "@angular/common";
 
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatDatepicker, MatDatepickerInputEvent} from "@angular/material/datepicker";
-//import { MatDialog } from '@angular/material/dialog';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
 
 import { NotedefraisService } from "../notedefrais.service"
 import { ConfirmDialogComponent } from "../../confirm-dialog/confirm-dialog.component";
@@ -19,6 +15,8 @@ import {Moment} from "moment";
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
+
+const BASE_URL_N2F_BACK = "http://localhost:8080/export";
 
 @Component({
   selector: 'app-view',
@@ -34,7 +32,7 @@ export class ViewComponent implements OnInit {
   datas: Observable<any[]>;
   total = 0;
 
-  constructor (public dialog: MatDialog, private fb: FormBuilder, private ndfService:NotedefraisService) {     
+  constructor (public dialog: MatDialog, private fb: FormBuilder, private ndfService:NotedefraisService) {    
   }
 
   ngOnInit() {
@@ -78,7 +76,13 @@ export class ViewComponent implements OnInit {
      this.countTotal();
   }
 
-  onExport() {
+  onExport() {    
+    let v = this.date.value;
+    let d= new Date(v);     
+    let month=d.getMonth() + 1;   
+    let year=d.getFullYear();
+    const URL = `${BASE_URL_N2F_BACK}/${year}/${month}`;
+    window.open(URL, "_blank");    
   }
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -96,7 +100,7 @@ export class ViewComponent implements OnInit {
   }
 
   loadDatas() {
-    var v = this.date.value;
+    let v = this.date.value;
     if (v != null) {      
       this.datas = this.ndfService.get(new Date(v));
     }

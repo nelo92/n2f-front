@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 
 import { NgModule } from '@angular/core';
@@ -24,10 +25,11 @@ import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.componen
     BrowserModule,  
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule, ReactiveFormsModule,
+    MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    MaterialModule
+    AngularFirestoreModule
   ],
   declarations: [ AppComponent,
     HeaderComponent, FooterComponent,
