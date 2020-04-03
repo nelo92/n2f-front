@@ -31,6 +31,7 @@ export class ViewComponent implements OnInit {
   date = new FormControl(moment());
   datas: Observable<any[]>;
   total = 0;
+  displayTotal = false;
 
   constructor (public dialog: MatDialog, private fb: FormBuilder, private ndfService:NotedefraisService) {    
   }
@@ -111,7 +112,8 @@ export class ViewComponent implements OnInit {
     this.total = 0;
     this.datas.forEach((datas) => datas.map(data =>{       
         this.total += parseFloat(data.amount);
-    }));
+        this.displayTotal = true;
+    }));    
   }
  
 }

@@ -9,7 +9,7 @@
 					<div class="form-group">
 						<label for="date">Date</label>        
             <div>              
-              <input matInput [matDatepicker]="dp" formControlName="date" class="datepicker"
+              <input id="date" [matDatepicker]="dp" formControlName="date" class="datepicker"
                 (dateInput)="onInputDate($event)"
                 (dateChange)="onChangeDate($event)"    
                 placeholder="dd/mm/yyyy" maxlength="10" required> 

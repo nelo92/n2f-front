@@ -3,6 +3,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 
@@ -37,7 +38,8 @@ export const MY_FORMAT_DD_MM_YYYY = {
 @NgModule({
   exports: [
     MatButtonModule,
-    MatFormFieldModule,
+    MatFormFieldModule,    
+    MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule
