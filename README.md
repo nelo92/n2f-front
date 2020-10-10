@@ -8,11 +8,13 @@ Url : https://nodedefrais.web.app/
 ## TODO
 
 + control doublon insertion and show error on input view
-+ recalculate total after delete action
 
 ## RELEASE
 
-v.1.0.0 : show version in application
+v.1.0.0 : 
+show version in application
+v.1.1.0 : 
+recalculate total after delete/deleteAll action in screen view 
 
 ## Build angular project
 

@@ -10,7 +10,7 @@
             <label for="date" class="mr-2">Mois: </label> 
             <input id="date" [matDatepicker]="dp" [formControl]="date"
                    (dateChange)="onChangeDate($event)"
-                   placeholder="mm/yyyy" maxlength="7" required>
+                   placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required>
             <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp
               startView="month"

@@ -15,8 +15,7 @@ export const MESSAGE_FORM_ERROR = "Form is invalid.";
 
 @Component({
   selector: "app-input",
-  templateUrl: "./input.component.html",
-  styleUrls: ["./input.component.css"],
+  templateUrl: "./input.component.html"
 })
 export class InputComponent implements OnInit {
 

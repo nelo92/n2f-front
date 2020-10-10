@@ -56,7 +56,6 @@ export class ViewComponent implements OnInit {
   }
   action_delete(data){ 
     this.ndfService.delete(data);
-    //this.countTotal();
     this.loadDatas();
   }
 
@@ -75,8 +74,7 @@ export class ViewComponent implements OnInit {
     this.datas.forEach((datas) => datas.map(data =>{       
       this.ndfService.delete(data);      
     }));
-     //this.countTotal();
-     this.loadDatas();
+    this.loadDatas();
   }
 
   onExport() {    
@@ -99,24 +97,26 @@ export class ViewComponent implements OnInit {
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
     datepicker.close();
-    this.loadDatas();   
+    this.loadDatas();     
   }
 
-  loadDatas() {
+  loadDatas() { 
     let v = this.date.value;
     if (v != null) {      
-      this.datas = this.ndfService.get(new Date(v));
+      this.datas = this.ndfService.get(new Date(v));      
+      this.datas.subscribe(data => {
+        this.countTotal(data);
+      });
     }
-   this.countTotal();
+  }
+  
+  countTotal(datas: any[]){
+    this.total = 0;  
+    this.displayTotal = false;
+    datas.forEach((data)=> {
+      this.total += parseFloat(data.amount);
+      this.displayTotal = true;
+    });
   }
 
-  countTotal(){
-    console.log("countTotal");
-    this.total = 0;
-    this.datas.forEach((datas) => datas.map(data =>{       
-        this.total += parseFloat(data.amount);
-        this.displayTotal = true;
-    }));    
-  }
- 
 }

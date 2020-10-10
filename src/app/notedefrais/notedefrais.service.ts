@@ -22,8 +22,8 @@ export class NotedefraisService {
       ref => ref.orderBy('date', "asc")
         .where('date', '>=', dateStart)
         .where('date', '<', dateEnd)
-    );  
-    this.datas =  this.dataCollection.snapshotChanges().pipe(
+    );      
+    this.datas = this.dataCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Data;
         const id = a.payload.doc.id;        
