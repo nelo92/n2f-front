@@ -8,6 +8,7 @@ Url : https://nodedefrais.web.app/
 ## TODO
 
 + control doublon insertion and show error on input view
++ recalculate total after delete action
 
 ## RELEASE
 

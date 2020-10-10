@@ -56,7 +56,8 @@ export class ViewComponent implements OnInit {
   }
   action_delete(data){ 
     this.ndfService.delete(data);
-    this.countTotal();
+    //this.countTotal();
+    this.loadDatas();
   }
 
   deleteAll(){
@@ -74,7 +75,8 @@ export class ViewComponent implements OnInit {
     this.datas.forEach((datas) => datas.map(data =>{       
       this.ndfService.delete(data);      
     }));
-     this.countTotal();
+     //this.countTotal();
+     this.loadDatas();
   }
 
   onExport() {    
@@ -109,6 +111,7 @@ export class ViewComponent implements OnInit {
   }
 
   countTotal(){
+    console.log("countTotal");
     this.total = 0;
     this.datas.forEach((datas) => datas.map(data =>{       
         this.total += parseFloat(data.amount);
