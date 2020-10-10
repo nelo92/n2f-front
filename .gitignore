@@ -30,5 +30,10 @@ build/
 ### VS Code ###
 .vscode/
 
-### Angular ###
+## Firebase ###
+.firebase
+.firebaserc
+firebase.json
+
+## Angular ###
 node_modules
