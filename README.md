@@ -8,6 +8,7 @@ Url : https://nodedefrais.web.app/
 ## TODO
 
 + control doublon insertion and show error on input view
++ force format dd/mm/yyyy on screen view. Pb when input 1/10/2020
 
 ## RELEASE
 
