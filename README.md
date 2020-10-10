@@ -1,4 +1,10 @@
 # n2f-front
 Created by MAU
 
-modif depuis vscode
+## TODO
++ control doublon insertion and show error on input view
+
+## RELEASE
+
+v.1.0.0
+
