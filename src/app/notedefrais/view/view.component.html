@@ -1,51 +1,48 @@
-<app-message></app-message>  
+<app-message></app-message>
 <div class="container">
-  <div class="d-flex flex-column justify-content-center"> 
+  <div class="d-flex flex-column justify-content-center">
 
     <div>
       <div class="card my-2">
         <div id="view-form" class="card-body">
-                    
+
           <div>
-            <label for="date" class="mr-2">Mois: </label> 
-            <input id="date" [matDatepicker]="dp" [formControl]="date"
-                   (dateChange)="onChangeDate($event)"
-                   placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required>
+            <label for="date" class="mr-2">Mois: </label>
+            <input id="date" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)"
+              placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required>
             <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp
-              startView="month"
-              (yearSelected)="chosenYearHandler($event)"
-              (monthSelected)="chosenMonthHandler($event, dp)">          
-            </mat-datepicker>                       
+            <mat-datepicker #dp startView="month" (yearSelected)="chosenYearHandler($event)"
+              (monthSelected)="chosenMonthHandler($event, dp)">
+            </mat-datepicker>
           </div>
-          <div class="d-flex justify-content-end"> 
+          <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-primary btn-sm" (click)="onExport()">Export</button>
           </div>
-        
+
         </div>
       </div>
     </div>
-  
+
     <table>
-      <tr>    
+      <tr>
         <th>Date</th>
         <th>Montant</th>
         <th></th>
       </tr>
-      <tr *ngFor="let data of datas | async">          
+      <tr *ngFor="let data of datas$ | async">
         <td>{{data.date.toDate() | date:'dd/MM/yyyy'}}</td>
         <td>{{data.amount}} €</td>
         <td>
           <span class="d-none">{{data.id}}</span>
           <button type="button" class="btn btn-sm btn-danger m-1" (click)="delete(data)">Delete</button>
-        </td>    
-      </tr> 
+        </td>
+      </tr>
       <tr *ngIf="displayTotal">
         <td class="font-weight-bold">Total</td>
         <td class="font-weight-bold text-danger"> {{total}} €</td>
         <td><button type="button" class="btn btn-sm btn-secondary m-1" (click)="deleteAll()">Delete All</button></td>
       </tr>
     </table>
-   
+
   </div>
 </div>

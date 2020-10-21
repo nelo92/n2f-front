@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-export const enum Level { INFO ="INFO", ERROR="ERROR" }
+export const enum Level { INFO = "INFO", ERROR = "ERROR" }
 
 export const MSG_ERROR = "Error - ";
 
 @Component({
   selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  templateUrl: './message.component.html'
 })
 
 export class MessageComponent implements OnInit {
@@ -16,16 +15,16 @@ export class MessageComponent implements OnInit {
   v_text: string;
   v_level: Level;
 
-  constructor() { 
+  constructor() {
     this.init();
   }
- 
-  ngOnInit() {   }
 
-  init(){
-    this.v_show=false;
-    this.v_text="";
-    this.v_level=Level.INFO;
+  ngOnInit() { }
+
+  init() {
+    this.v_show = false;
+    this.v_text = "";
+    this.v_level = Level.INFO;
   }
 
   show(level: Level, text: string) {
@@ -35,7 +34,7 @@ export class MessageComponent implements OnInit {
     this.hide();
   }
 
-  show_info(text: string) {  
+  show_info(text: string) {
     this.show(Level.INFO, text);
     this.hide();
   }
@@ -44,7 +43,7 @@ export class MessageComponent implements OnInit {
     this.hide();
   }
 
-  hide(){
+  hide() {
     setTimeout(() => { this.init() }, 3000);
   }
 

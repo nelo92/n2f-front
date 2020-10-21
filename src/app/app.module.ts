@@ -6,8 +6,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AngularFireModule } from "angularfire2";
-import { AngularFirestoreModule } from "angularfire2/firestore";
+// import { AngularFireModule } from "angularfire2";
+// import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { MaterialModule } from "./material.module";
 
@@ -30,7 +32,7 @@ import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.componen
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    MaterialModule    
+    MaterialModule
   ],
   declarations: [
     AppComponent,
@@ -45,4 +47,4 @@ import { ConfirmDialogComponent } from "./confirm-dialog/confirm-dialog.componen
   bootstrap: [AppComponent],
   providers: [NotedefraisService]
 })
-export class AppModule {}
+export class AppModule { }

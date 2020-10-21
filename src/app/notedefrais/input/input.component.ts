@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
-import { FormGroup,FormControl, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 
 import { NotedefraisService } from "../notedefrais.service";
@@ -27,36 +27,36 @@ export class InputComponent implements OnInit {
     amount: ["", [Validators.required, Validators.pattern(patternAmount)]]
   });
 
-  constructor(private fb: FormBuilder, private ndfService: NotedefraisService) {}
+  constructor(private fb: FormBuilder, private ndfService: NotedefraisService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
-  onInputDate(e: MatDatepickerInputEvent<Date>){   
+  onInputDate(e: MatDatepickerInputEvent<Date>) {
   }
 
-  onChangeDate(e: MatDatepickerInputEvent<Date>) {    
+  onChangeDate(e: MatDatepickerInputEvent<Date>) {
   }
 
   onReset() {
-    this.inputForm.reset();  
+    this.inputForm.reset();
     this.submitted = false;
     this.inputForm.get("date").setValue(moment());
   }
 
   onSubmit() {
-    this.submitted = true;    
+    this.submitted = true;
     if (this.inputForm.invalid) {
       this.message.show_error(MESSAGE_FORM_ERROR);
       return;
-    }     
+    }
     this.ndfService.add({
       date: this.inputForm.get("date").value.toDate(),
       amount: this.inputForm.get("amount").value.replace(",", ".")
-    });      
+    });
     this.onReset();
-    this.message.show_info(MESSAGE_SUCCESS);    
+    this.message.show_info(MESSAGE_SUCCESS);
   }
 
   get date() {
@@ -71,15 +71,16 @@ export class InputComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) => {
     return this.inputForm.controls[controlName].hasError(errorName);
   };
-/*
-  formatDate(date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-    year = d.getFullYear();
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-    return [day, month, year].join("/");
-  }
-*/
+
+  /*
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+      year = d.getFullYear();
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+      return [day, month, year].join("/");
+    }
+  */
 }

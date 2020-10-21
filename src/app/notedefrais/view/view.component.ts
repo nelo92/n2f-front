@@ -1,17 +1,19 @@
-import { Component, OnInit, Inject} from '@angular/core';
-import { FormGroup, FormControl,  FormBuilder, Validators } from "@angular/forms";
+import { DataId } from '../notedefrais.service';
+
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
 
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import {MatDatepicker, MatDatepickerInputEvent} from "@angular/material/datepicker";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { NotedefraisService } from "../notedefrais.service"
 import { ConfirmDialogComponent } from "../../confirm-dialog/confirm-dialog.component";
 
 import { MY_FORMATS_MM_YYYY, moment } from "../../material.module";
-import {Moment} from "moment";
+import { Moment } from "moment";
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
@@ -23,67 +25,68 @@ const BASE_URL_N2F_BACK = "http://localhost:8080/export";
   templateUrl: './view.component.html',
   styleUrls: ['./view.component.css'],
   providers: [
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY},
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY },
   ],
 })
 export class ViewComponent implements OnInit {
-  
+
   date = new FormControl(moment());
-  datas: Observable<any[]>;
+
+  datas$: Observable<any[]>;
+  datas: any[];
+
   total = 0;
   displayTotal = false;
 
-  constructor (public dialog: MatDialog, private fb: FormBuilder, private ndfService:NotedefraisService) {    
+  constructor(public dialog: MatDialog, private fb: FormBuilder, private ndfService: NotedefraisService) {
   }
 
   ngOnInit() {
-    this.loadDatas(); 
+    this.loadDatas();
   }
 
   onChangeDate(e: MatDatepickerInputEvent<Date>) {
-     this.loadDatas();   
+    this.loadDatas();
   }
 
-  delete(data){  
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {            
-     data:{ message: MESSAGE_DELETE }
+  delete(data) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: MESSAGE_DELETE }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {        
+      if (result) {
         this.action_delete(data);
       }
     });
   }
-  action_delete(data){ 
+  action_delete(data) {
     this.ndfService.delete(data);
     this.loadDatas();
   }
 
-  deleteAll(){
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {            
-     data:{ message: MESSAGE_DELETE_ALL }
+  deleteAll() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: MESSAGE_DELETE_ALL }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {        
+      if (result) {
         this.action_deleteAll();
       }
     });
   }
 
-  action_deleteAll(){
-    this.datas.forEach((datas) => datas.map(data =>{       
-      this.ndfService.delete(data);      
-    }));
+  action_deleteAll() {
+    this.datas.forEach(data => this.ndfService.delete(data));
     this.loadDatas();
   }
 
-  onExport() {    
+  onExport() {
     let v = this.date.value;
-    let d= new Date(v);     
-    let month=d.getMonth() + 1;   
-    let year=d.getFullYear();
+    let d = new Date(v);
+    let month = d.getMonth() + 1;
+    let year = d.getFullYear();
     const URL = `${BASE_URL_N2F_BACK}/${year}/${month}`;
-    window.open(URL, "_blank");    
+    window.open(URL, "_blank");
   }
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -97,23 +100,24 @@ export class ViewComponent implements OnInit {
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
     datepicker.close();
-    this.loadDatas();     
+    this.loadDatas();
   }
 
-  loadDatas() { 
+  loadDatas() {
     let v = this.date.value;
-    if (v != null) {      
-      this.datas = this.ndfService.get(new Date(v));      
-      this.datas.subscribe(data => {
-        this.countTotal(data);
+    if (v != null) {
+      this.datas$ = this.ndfService.get(new Date(v));
+      this.datas$.subscribe(datas => {
+        this.datas = datas;
+        this.countTotal(this.datas);
       });
     }
   }
-  
-  countTotal(datas: any[]){
-    this.total = 0;  
+
+  countTotal(datas: any[]) {
+    this.total = 0;
     this.displayTotal = false;
-    datas.forEach((data)=> {
+    datas.forEach((data) => {
       this.total += parseFloat(data.amount);
       this.displayTotal = true;
     });
