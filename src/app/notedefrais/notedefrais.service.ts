@@ -15,6 +15,14 @@ export class NotedefraisService {
   constructor(private afs: AngularFirestore) {
   }
 
+  // logDate(d) {
+  //   let date = ("0" + d.getDate()).slice(-2);
+  //   let month = ("0" + (d.getMonth() + 1)).slice(-2);
+  //   let year = d.getFullYear();
+  //   console.log(" date ->", d);
+  //   return date + "/" + month + "/" + year;
+  // }
+
   get(date): Observable<DataId[]> {
     let dateStart = this.getDateStart(date);
     let dateEnd = this.getDateEnd(date);
@@ -23,6 +31,9 @@ export class NotedefraisService {
         .where("date", ">=", dateStart)
         .where("date", "<", dateEnd)
     );
+    // console.log("filter.start=", this.logDate(dateStart));
+    // console.log("filter.end=", this.logDate(dateEnd));
+
     this.datas$ = this.dataCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Data;

@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { DataId } from '../notedefrais.service';
 
 import { Component, OnInit, Inject } from '@angular/core';
@@ -18,7 +19,6 @@ import { Moment } from "moment";
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
 
-const BASE_URL_N2F_BACK = "http://localhost:8080/export";
 
 @Component({
   selector: 'app-view',
@@ -85,7 +85,8 @@ export class ViewComponent implements OnInit {
     let d = new Date(v);
     let month = d.getMonth() + 1;
     let year = d.getFullYear();
-    const URL = `${BASE_URL_N2F_BACK}/${year}/${month}`;
+    const URL = `${environment.urlExport}/${year}/${month}`;
+    console.log("Url export: " + URL);
     window.open(URL, "_blank");
   }
 
