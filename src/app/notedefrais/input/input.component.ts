@@ -31,8 +31,6 @@ export class InputComponent implements OnInit {
 
   ngOnInit() { }
 
-  ngAfterViewInit() { }
-
   onInputDate(e: MatDatepickerInputEvent<Date>) {
   }
 
@@ -52,7 +50,7 @@ export class InputComponent implements OnInit {
       return;
     }
     this.ndfService.add({
-      date: this.inputForm.get("date").value.toDate(),
+      date: this.inputForm.get("date").value.toDate().setHours(12, 0, 0, 0),
       amount: this.inputForm.get("amount").value.replace(",", ".")
     });
     this.onReset();
@@ -72,15 +70,11 @@ export class InputComponent implements OnInit {
     return this.inputForm.controls[controlName].hasError(errorName);
   };
 
-  /*
-    formatDate(date) {
-      var d = new Date(date),
-        month = "" + (d.getMonth() + 1),
-        day = "" + d.getDate(),
-      year = d.getFullYear();
-      if (month.length < 2) month = "0" + month;
-      if (day.length < 2) day = "0" + day;
-      return [day, month, year].join("/");
-    }
-  */
+  // formartDate(d) {
+  //   let date = ("0" + d.getDate()).slice(-2);
+  //   let month = ("0" + (d.getMonth() + 1)).slice(-2);
+  //   let year = d.getFullYear();
+  //   return date + "/" + month + "/" + year;
+  // }
+
 }
