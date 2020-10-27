@@ -49,8 +49,10 @@ export class InputComponent implements OnInit {
       this.message.show_error(MESSAGE_FORM_ERROR);
       return;
     }
+    let d = this.inputForm.get("date").value.toDate();
+    d.setHours(12, 0, 0, 0);
     this.ndfService.add({
-      date: this.inputForm.get("date").value.toDate().setHours(12, 0, 0, 0),
+      date: d,
       amount: this.inputForm.get("amount").value.replace(",", ".")
     });
     this.onReset();
