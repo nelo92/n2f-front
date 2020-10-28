@@ -1,3 +1,4 @@
+import * as FirebaseConstants from '../constants/firebase.constants';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
@@ -26,10 +27,10 @@ export class NotedefraisService {
   get(date): Observable<DataId[]> {
     let dateStart = this.getDateStart(date);
     let dateEnd = this.getDateEnd(date);
-    this.dataCollection = this.afs.collection<Data>("datas",
-      ref => ref.orderBy("date", "asc")
-        .where("date", ">=", dateStart)
-        .where("date", "<", dateEnd)
+    this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATA,
+      ref => ref.orderBy(FirebaseConstants.FIELD_DATE, "asc")
+        .where(FirebaseConstants.FIELD_DATE, ">=", dateStart)
+        .where(FirebaseConstants.FIELD_DATE, "<", dateEnd)
     );
     // console.log("filter.start=", this.logDate(dateStart));
     // console.log("filter.end=", this.logDate(dateEnd));
@@ -45,7 +46,7 @@ export class NotedefraisService {
   }
 
   add(data) {
-    this.dataCollection = this.afs.collection<Data>("datas");
+    this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATA);
     this.dataCollection.add(data)
       .then(function (doc) {
         console.log("Document written with ID: ", doc.id);

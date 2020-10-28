@@ -1,24 +1,18 @@
-import { environment } from './../../../environments/environment';
-import { DataId } from '../notedefrais.service';
-
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { Observable } from 'rxjs';
-
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-import { NotedefraisService } from "../notedefrais.service"
-import { ConfirmDialogComponent } from "../../confirm-dialog/confirm-dialog.component";
-
-import { MY_FORMATS_MM_YYYY, moment } from "../../material.module";
-import { Moment } from "moment";
+import { moment, MY_FORMATS_MM_YYYY } from 'src/app/modules/material.module';
+import { Moment } from 'moment';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { NotedefraisService } from 'src/app/services/notedefrais.service';
+import { environment } from 'src/environments/environment';
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
-
 
 @Component({
   selector: 'app-view',
