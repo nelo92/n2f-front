@@ -26,7 +26,7 @@ export class NotedefraisService {
   // }
 
   get(date, user_uid): Observable<DataId[]> {
-    console.log("get : date=", date, "user_uid=", user_uid);
+    // console.log("get : date=", date, "user_uid=", user_uid);
     let dateStart = this.getDateStart(date);
     let dateEnd = this.getDateEnd(date);
     this.dataCollection = this.afs.doc(`${FirebaseConstants.COLLECTION_USERS}/${user_uid}`).collection(FirebaseConstants.COLLECTION_DATAS,

@@ -80,11 +80,12 @@ export class ViewComponent implements OnInit {
   }
 
   onExport() {
+    const user = this.authService.userData;
     let v = this.date.value;
     let d = new Date(v);
     let month = d.getMonth() + 1;
     let year = d.getFullYear();
-    const URL = `${environment.urlExport}/${year}/${month}`;
+    const URL = `${environment.urlExport}/${user.uid}/${year}/${month}`;
     console.log("Url export: " + URL);
     window.open(URL, "_blank");
   }
