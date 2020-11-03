@@ -3,7 +3,7 @@ import { environment } from "../environments/environment";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from "./app-routing.module";
+import { AppRoutingModule } from "./routing/app-routing.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AngularFireModule } from '@angular/fire';
@@ -18,10 +18,8 @@ import { MessageComponent } from './components/message/message.component';
 import { NotedefraisService } from './services/notedefrais.service';
 import { InputComponent } from './pages/notedefrais/input/input.component';
 import { ViewComponent } from './pages/notedefrais/view/view.component';
-import { ForgotPwdComponent } from './pages/auth/forgot-pwd/forgot-pwd.component';
 import { SignInComponent } from './pages/auth/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
-import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.component';
+
 
 @NgModule({
   imports: [
@@ -43,10 +41,7 @@ import { VerifyEmailComponent } from './pages/auth/verify-email/verify-email.com
     ViewComponent,
     MessageComponent,
     ConfirmDialogComponent,
-    SignInComponent,
-    SignUpComponent,
-    ForgotPwdComponent,
-    VerifyEmailComponent
+    SignInComponent
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent],

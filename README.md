@@ -2,8 +2,6 @@
 
 Creator MAU
 
-branch is auth
-
 ## URL
 
 https://nodedefrais.web.app/
@@ -23,5 +21,5 @@ recalculate total after delete/deleteAll action in screen view
 v.1.1.1 :
 bug correction
 v.1.2.0 :
-add authentification, space by user
+add authentification & data by user
 add libelle to insertion

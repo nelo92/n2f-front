@@ -10,6 +10,7 @@ import { Moment } from 'moment';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 import { NotedefraisService } from 'src/app/services/notedefrais.service';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/services/auth.service';
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
@@ -32,8 +33,12 @@ export class ViewComponent implements OnInit {
   total = 0;
   displayTotal = false;
 
-  constructor(public dialog: MatDialog, private fb: FormBuilder, private ndfService: NotedefraisService) {
-  }
+  constructor(
+    public dialog: MatDialog,
+    private fb: FormBuilder,
+    private ndfService: NotedefraisService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.loadDatas();
@@ -99,9 +104,11 @@ export class ViewComponent implements OnInit {
   }
 
   loadDatas() {
+    const user = this.authService.userData;
+    console.log("loadDatas user_uid= ", user.uid)
     let v = this.date.value;
     if (v != null) {
-      this.datas$ = this.ndfService.get(new Date(v));
+      this.datas$ = this.ndfService.get(new Date(v), user.uid);
       this.datas$.subscribe(datas => {
         this.datas = datas;
         this.countTotal(this.datas);

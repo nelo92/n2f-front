@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,7 +10,9 @@ export class HeaderComponent implements OnInit {
 
   @Input() appName: string;
 
-  constructor() { }
+  constructor(
+    public authService: AuthService,
+  ) { }
 
   ngOnInit() {
   }

@@ -4,6 +4,7 @@ import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { NotedefraisService } from 'src/app/services/notedefrais.service';
 import { MessageComponent } from 'src/app/components/message/message.component';
 import { moment } from 'src/app/modules/material.module';
+import { AuthService } from 'src/app/services/auth.service';
 
 export const patternDate = "^\\d{2}[/]\\d{2}[/]\\d{4}$";
 export const patternAmount = "^([,|.]?[0-9])+$";
@@ -25,15 +26,17 @@ export class InputComponent implements OnInit {
     amount: ["", [Validators.required, Validators.pattern(patternAmount)]]
   });
 
-  constructor(private fb: FormBuilder, private ndfService: NotedefraisService) { }
+  constructor(
+    private fb: FormBuilder,
+    private ndfService: NotedefraisService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() { }
 
-  onInputDate(e: MatDatepickerInputEvent<Date>) {
-  }
+  onInputDate(e: MatDatepickerInputEvent<Date>) { }
 
-  onChangeDate(e: MatDatepickerInputEvent<Date>) {
-  }
+  onChangeDate(e: MatDatepickerInputEvent<Date>) { }
 
   onReset() {
     this.inputForm.reset();
@@ -42,6 +45,7 @@ export class InputComponent implements OnInit {
   }
 
   onSubmit() {
+    const user = this.authService.userData;
     this.submitted = true;
     if (this.inputForm.invalid) {
       this.message.show_error(MESSAGE_FORM_ERROR);
@@ -50,6 +54,7 @@ export class InputComponent implements OnInit {
     let d = this.inputForm.get("date").value.toDate();
     d.setHours(12, 0, 0, 0);
     this.ndfService.add({
+      user_uid: user.uid,
       date: d,
       amount: this.inputForm.get("amount").value.replace(",", ".")
     });

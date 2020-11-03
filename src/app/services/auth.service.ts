@@ -1,15 +1,21 @@
-import { AngularFirestore } from '@angular/fire/firestore';
+import * as FirebaseConstants from '../constants/firebase.constants';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router';
+
+export interface User {
+  uid: string;
+  email: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userData: any; // Save logged in user data
+  userData: User; // Save logged in user data
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -20,13 +26,8 @@ export class AuthService {
     // Saving user data in localstorage when logged in and setting up null when logged out
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.userData = user;
-        // localStorage.setItem('user', JSON.stringify(this.userData));
-        // JSON.parse(localStorage.getItem('user'));
         this.login(user);
       } else {
-        // localStorage.setItem('user', null);
-        // JSON.parse(localStorage.getItem('user'));
         this.login(null);
       }
     })
@@ -40,57 +41,68 @@ export class AuthService {
     return user !== null;
   }
 
+  // get userData() { return this._userData }
+
+  // ------------------------------------------------------
+
   private login(user) {
-    localStorage.setItem('user', user);
-    JSON.parse(localStorage.getItem('user'));
+    this.userData = user;
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   private logout() {
+    this.userData = null;
     localStorage.removeItem('user');
   }
+
+  setUserData(user) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`${FirebaseConstants.COLLECTION_USERS}/${user.uid}`);
+    const userData: User = {
+      uid: user.uid,
+      email: user.email
+    }
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
+  // ------------------------------------------------------
+  // auth with Login & Pwd
+  // ...
 
   // ------------------------------------------------------
   // auth with Google
 
-  loginWithGoogle() {
+  login_with_google() {
     this.afAuth.signInWithPopup(new auth.GoogleAuthProvider())
       .then((result) => {
         this.ngZone.run(() => {
           console.log('You have been successfully logged in!')
-          console.log('user:', result.user);
         })
-      }).catch((error) => {
-        console.log(error)
-      })
+        this.login(result.user);
+        this.setUserData(result.user);
+        this.router.navigate(["input"]);
+      });
   }
 
-  logoutWithGoogle() {
-    console.log('logoutWithGoogle...');
+  logout_with_google() {
     this.afAuth.signOut().then((result) => {
       console.log('You have been successfully logged out!')
-    }).catch((error) => {
-      console.log(error)
+      this.router.navigate(["sign-in"]);
     });
     this.logout();
   }
 
   // ------------------------------------------------------
+  // auth with Facebook
+  // ...
 
-  // googleAuth() {
-  //   console.log("googleAuth");
-  //   return this.authLogin(new auth.GoogleAuthProvider());
-  // }
+  // ------------------------------------------------------
+  // auth with Twitter
+  // ...
 
-  // // Auth logic to run auth providers
-  // authLogin(provider) {
-  //   return this.afAuth.signInWithPopup(provider)
-  //     .then((result) => {
-  //       this.ngZone.run(() => {
-  //         console.log('You have been successfully logged in!')
-  //       })
-  //     }).catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
+  // ------------------------------------------------------
+  // auth with Github
+  // ...
 
 }
