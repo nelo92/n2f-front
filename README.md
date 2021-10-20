@@ -29,3 +29,5 @@ bug correction
 v.1.2.0 :
 add authentification & data by user
 add libelle to insertion
+v.1.2.3 :
+configure firebase rewrite url
