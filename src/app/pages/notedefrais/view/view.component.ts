@@ -31,7 +31,7 @@ export class ViewComponent implements OnInit {
   datas$: Observable<any[]>;
   datas: any[];
 
-  total = 0;
+  total: number = 0;
   displayTotal = false;
 
   constructor(
@@ -89,7 +89,6 @@ export class ViewComponent implements OnInit {
     let month = d.getMonth() + 1;
     let year = d.getFullYear();
     const URL = `${environment.urlExport}/${user.uid}/${year}/${month}`;
-    console.log("Url export: " + URL);
     window.open(URL, "_blank");
   }
 
@@ -109,7 +108,6 @@ export class ViewComponent implements OnInit {
 
   loadDatas() {
     const user = this.authService.userData;
-    console.log("loadDatas user_uid= ", user.uid)
     let v = this.date.value;
     if (v != null) {
       this.datas$ = this.ndfService.get(new Date(v), user.uid);
@@ -127,6 +125,12 @@ export class ViewComponent implements OnInit {
       this.total += parseFloat(data.amount);
       this.displayTotal = true;
     });
+    this.total = parseFloat(this.numberFormat(this.total, 2));
+  }
+
+  numberFormat(val, dec) {
+    var multiplier = Math.pow(10, dec);
+    return (Math.round(val * multiplier) / multiplier).toFixed(dec);
   }
 
 }

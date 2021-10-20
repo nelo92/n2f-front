@@ -5,9 +5,10 @@
                 <button class="btn btn-block btn-secondary" (click)="authService.login_with_google()">
                     <i class="fab fa-google mr-2"></i>
                     Login with Google</button>
-                <button class="btn btn-block btn-secondary" (click)="authService.login_with_facebook()">
+                <button class="btn btn-block btn-secondary" disabled (click)="authService.login_with_facebook()">
                     <i class="fab fa-facebook-f mr-2"></i>
-                    Login with Facebook</button>
+                    Login with Facebook
+                </button>
                 <button class="btn btn-block btn-secondary" disabled>
                     <i class="fab fa-twitter mr-2"></i>
                     Login with Twitter</button>
