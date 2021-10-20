@@ -13,7 +13,7 @@ https://nodedefrais.firebaseapp.com/
 
 Need file <firebase.config> and put it in directory src/environnements
 
-## TODO
+## TO DO
 
 - control doublon insertion and show error on input view
 - add libelle to insertion
