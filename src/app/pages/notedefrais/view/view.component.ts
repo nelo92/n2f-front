@@ -11,6 +11,7 @@ import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confir
 import { NotedefraisService } from 'src/app/services/notedefrais.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
@@ -37,7 +38,9 @@ export class ViewComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private ndfService: NotedefraisService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
+
   ) { }
 
   ngOnInit() {

@@ -12,7 +12,7 @@
 			</li>
 		</ul>
 		<span *ngIf="authService.isLoggedIn" (click)="authService.logout_with_google()" class="ml-auto pl-3">
-			<button class="btn btn-danger btn-sign-out" title="{{authService.userData.email}} disconnect">
+			<button class="btn btn-danger btn-sign-out" title="Goodbye : {{authService.userData.email}}">
 				<i class="fas fa-sign-out-alt"></i>
 			</button>
 		</span>

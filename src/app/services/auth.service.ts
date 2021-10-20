@@ -41,8 +41,6 @@ export class AuthService {
     return user !== null;
   }
 
-  // get userData() { return this._userData }
-
   // ------------------------------------------------------
 
   private login(user) {
@@ -95,14 +93,16 @@ export class AuthService {
 
   // ------------------------------------------------------
   // auth with Facebook
-  // ...
-
-  // ------------------------------------------------------
-  // auth with Twitter
-  // ...
-
-  // ------------------------------------------------------
-  // auth with Github
-  // ...
+  login_with_facebook() {
+    this.afAuth.signInWithPopup(new auth.FacebookAuthProvider())
+      .then((result) => {
+        this.ngZone.run(() => {
+          console.log('You have been successfully logged in!')
+        })
+        this.login(result.user);
+        this.setUserData(result.user);
+        this.router.navigate(["input"]);
+      });
+  }
 
 }
