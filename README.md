@@ -9,6 +9,8 @@ https://nodedefrais.firebaseapp.com/
 
 ## Project configuration
 
+#### pre requirements
+
 Need file <firebase.config> and put it in directory src/environnements
 
 ## TODO
