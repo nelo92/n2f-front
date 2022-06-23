@@ -41,3 +41,8 @@ Need file <firebase.config> and put it in directory src/environnements
 ### RELEASE NOTES -v.1.2.3
 
 - configure firebase rewrite url
+
+### RELEASE NOTES -v.1.2.4
+
+- merge auth to master branch
+- upgrade dependencies of project
