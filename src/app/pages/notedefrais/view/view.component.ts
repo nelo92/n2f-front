@@ -5,12 +5,12 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapte
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { moment, MY_FORMATS_MM_YYYY } from 'src/app/modules/material.module';
+import { moment, MY_FORMATS_MM_YYYY } from 'src/app/core/modules/material.module';
 import { Moment } from 'moment';
-import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
-import { NotedefraisService } from 'src/app/services/notedefrais.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
+import { NotedefraisService } from 'src/app/shared/services/notedefrais.service';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
