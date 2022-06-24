@@ -1,0 +1,20 @@
+<header>
+	<nav class="navbar navbar-expand-sm  navbar-dark bg-dark">
+		<span class="navbar-brand" class="font-weight-bold text-danger badge badge-light mr-3">
+			<h4>{{appName}}</h4>
+		</span>
+		<ul class="navbar-nav">
+			<li *ngIf="authService.isLoggedIn" class="nav-item">
+				<a class="nav-link" routerLink="input">Input</a>
+			</li>
+			<li *ngIf="authService.isLoggedIn" class="nav-item">
+				<a class="nav-link" routerLink="view">View</a>
+			</li>
+		</ul>
+		<span *ngIf="authService.isLoggedIn" (click)="authService.logout_with_google()" class="ml-auto pl-3">
+			<button class="btn btn-danger btn-sign-out" title="Goodbye : {{authService.userData.email}}">
+				<i class="fas fa-sign-out-alt"></i>
+			</button>
+		</span>
+	</nav>
+</header>
