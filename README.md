@@ -46,3 +46,7 @@ Need file <firebase.config> and put it in directory src/environnements
 
 - merge auth to master branch
 - upgrade dependencies of project
+
+### RELEASE NOTES -v.1.3.0
+
+- change structure of project with notion module

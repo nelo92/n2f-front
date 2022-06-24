@@ -1,13 +1,13 @@
-import { AuthService } from '../../../modules/auth/auth.service';
+import { AuthService } from '../../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: 'app-sign-in-page',
+  templateUrl: './sign-in-page.component.html',
+  styleUrls: ['./sign-in-page.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignInPageComponent implements OnInit {
 
   constructor(
     public authService: AuthService,

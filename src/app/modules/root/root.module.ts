@@ -8,7 +8,7 @@ import { RootRoutingModule } from './root-routing.module';
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule,
+    // SharedModule,
     RootRoutingModule
   ],
   declarations: [

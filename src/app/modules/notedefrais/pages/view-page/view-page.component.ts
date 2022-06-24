@@ -7,7 +7,7 @@ import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepi
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Moment } from 'moment';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
-import { NotedefraisService } from 'src/app/shared/services/notedefrais.service';
+import { NotedefraisService } from 'src/app/modules/notedefrais/services/notedefrais.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/modules/auth/auth.service';
@@ -18,14 +18,14 @@ const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css'],
+  selector: 'app-view-page',
+  templateUrl: './view-page.component.html',
+  styleUrls: ['./view-page.component.css'],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY },
   ],
 })
-export class ViewComponent implements OnInit {
+export class ViewPageComponent implements OnInit {
 
   date = new FormControl(moment());
 

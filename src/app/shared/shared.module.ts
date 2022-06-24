@@ -5,20 +5,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MessageComponent } from './components/message/message.component';
-import { NotedefraisService } from './services/notedefrais.service';
+import { NotedefraisService } from '../modules/notedefrais/services/notedefrais.service';
 import { MaterialModule } from './modules/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { InputComponent } from '../pages/notedefrais/input/input.component';
-import { ViewComponent } from '../pages/notedefrais/view/view.component';
-import { SignInComponent } from '../pages/auth/sign-in/sign-in.component';
+import { InputPageComponent } from '../modules/notedefrais/pages/input-page/input-page.component';
+import { ViewPageComponent } from '../modules/notedefrais/pages/view-page/view-page.component';
+import { SignInPageComponent } from '../modules/auth/pages/sign-in-page/sign-in-page.component';
 
 @NgModule({
     imports: [
-
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -26,7 +25,6 @@ import { SignInComponent } from '../pages/auth/sign-in/sign-in.component';
         ReactiveFormsModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
-
         CommonModule,
         MaterialModule
     ],
@@ -34,10 +32,9 @@ import { SignInComponent } from '../pages/auth/sign-in/sign-in.component';
         MessageComponent,
         ConfirmDialogComponent,
 
-        InputComponent,
-        ViewComponent,
-        SignInComponent
-
+        InputPageComponent,
+        ViewPageComponent,
+        SignInPageComponent
     ],
     exports: [
         MessageComponent,
