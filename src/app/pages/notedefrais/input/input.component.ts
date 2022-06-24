@@ -3,8 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms"
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { NotedefraisService } from 'src/app/shared/services/notedefrais.service';
 import { MessageComponent } from 'src/app/shared/components/message/message.component';
-import { moment } from 'src/app/core/modules/material.module';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { moment } from 'src/app/shared/modules/material.module';
+import { AuthService } from 'src/app/modules/auth/auth.service';
 
 export const patternDate = "^\\d{2}[/]\\d{2}[/]\\d{4}$";
 export const patternAmount = "^([,|.]?[0-9])+$";

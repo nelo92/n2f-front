@@ -23,6 +23,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
+    console.log('constructor AuthService...');
     // Saving user data in localstorage when logged in and setting up null when logged out
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -30,7 +31,7 @@ export class AuthService {
       } else {
         this.login(null);
       }
-    })
+    });
   }
 
   // ------------------------------------------------------
