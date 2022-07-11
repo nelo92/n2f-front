@@ -18,28 +18,22 @@ import { SignInPageComponent } from '../modules/auth/pages/sign-in-page/sign-in-
 
 @NgModule({
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
         CommonModule,
         MaterialModule
     ],
     declarations: [
         MessageComponent,
         ConfirmDialogComponent,
-
-        InputPageComponent,
-        ViewPageComponent,
-        SignInPageComponent
     ],
     exports: [
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        MaterialModule,
         MessageComponent,
         ConfirmDialogComponent,
-        MaterialModule
     ],
     entryComponents: [ConfirmDialogComponent],
     providers: [NotedefraisService]

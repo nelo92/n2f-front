@@ -6,26 +6,16 @@ import { ViewPageComponent } from './modules/notedefrais/pages/view-page/view-pa
 import { SignInPageComponent } from './modules/auth/pages/sign-in-page/sign-in-page.component';
 
 const routes: Routes = [
-    { path: "", redirectTo: "/sign-in", pathMatch: "full" },
-
-    { path: "sign-in", component: SignInPageComponent },
-    { path: "input", component: InputPageComponent, canActivate: [AuthGuard] },
-    { path: "view", component: ViewPageComponent, canActivate: [AuthGuard] },
-
-    // {
-    //     path: "sign-in",
-    //     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
-    // },
-    // {
-    //     path: "input",
-    //     loadChildren: () => import('./modules/notedefrais/notedefrais.module').then(m => m.NotedefraisModule),
-    //     canActivate: [AuthGuard]
-    // },
-    // {
-    //     path: "view",
-    //     loadChildren: () => import('./modules/notedefrais/notedefrais.module').then(m => m.NotedefraisModule),
-    //     canActivate: [AuthGuard]
-    // }
+    { path: "", redirectTo: "/auth/sign-in", pathMatch: "full" },
+    {
+        path: "auth",
+        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+    },
+    {
+        path: "n2f",
+        loadChildren: () => import('./modules/notedefrais/notedefrais.module').then(m => m.NotedefraisModule),
+        canActivate: [AuthGuard]
+    },
 
 ];
 

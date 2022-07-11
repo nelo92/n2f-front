@@ -23,7 +23,6 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
-    console.log('constructor AuthService...');
     // Saving user data in localstorage when logged in and setting up null when logged out
     this.afAuth.authState.subscribe(user => {
       if (user) {
@@ -80,14 +79,14 @@ export class AuthService {
         })
         this.login(result.user);
         this.setUserData(result.user);
-        this.router.navigate(["input"]);
+        this.router.navigate(["/n2f/input"]);
       });
   }
 
   logout_with_google() {
     this.afAuth.signOut().then((result) => {
       console.log('You have been successfully logged out!')
-      this.router.navigate(["sign-in"]);
+      this.router.navigate(["/auth/sign-in"]);
     });
     this.logout();
   }
@@ -102,7 +101,7 @@ export class AuthService {
         })
         this.login(result.user);
         this.setUserData(result.user);
-        this.router.navigate(["input"]);
+        this.router.navigate(["/n2f/input"]);
       });
   }
 

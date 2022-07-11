@@ -16,7 +16,7 @@ export class SignInPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
-      this.router.navigate(["input"]);
+      this.router.navigate(["/n2f/input"]);
     }
   }
 
