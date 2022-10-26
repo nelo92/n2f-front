@@ -1,50 +1,34 @@
-import { environment } from "../environments/environment";
-
+import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
-import { BrowserModule } from "@angular/platform-browser";
-import { AppRoutingModule } from "./routing/app-routing.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { AppComponent } from "./app.component";
+import { RootModule } from "./modules/root/root.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { MaterialModule } from "./modules/material.module";
-
-import { AppComponent } from "./app.component";
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { MessageComponent } from './components/message/message.component';
-import { NotedefraisService } from './services/notedefrais.service';
-import { InputComponent } from './pages/notedefrais/input/input.component';
-import { ViewComponent } from './pages/notedefrais/view/view.component';
-import { SignInComponent } from './pages/auth/sign-in/sign-in.component';
-
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    BrowserTransferStateModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    MaterialModule
+
+    SharedModule,
+    CoreModule,
+    RootModule,
+    AppRoutingModule,
   ],
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    InputComponent,
-    ViewComponent,
-    MessageComponent,
-    ConfirmDialogComponent,
-    SignInComponent
+    AppComponent
   ],
-  entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent],
-  providers: [NotedefraisService]
 })
 export class AppModule { }

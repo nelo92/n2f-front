@@ -1,4 +1,4 @@
-import * as FirebaseConstants from '../constants/firebase.constants';
+import * as FirebaseConstants from '../../../shared/constants/firebase.constants';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';

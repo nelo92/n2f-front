@@ -1,4 +1,4 @@
-import * as FirebaseConstants from '../constants/firebase.constants';
+import * as FirebaseConstants from '../../shared/constants/firebase.constants';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
@@ -30,7 +30,7 @@ export class AuthService {
       } else {
         this.login(null);
       }
-    })
+    });
   }
 
   // ------------------------------------------------------
@@ -79,14 +79,14 @@ export class AuthService {
         })
         this.login(result.user);
         this.setUserData(result.user);
-        this.router.navigate(["input"]);
+        this.router.navigate(["/n2f/input"]);
       });
   }
 
   logout_with_google() {
     this.afAuth.signOut().then((result) => {
       console.log('You have been successfully logged out!')
-      this.router.navigate(["sign-in"]);
+      this.router.navigate(["/auth/sign-in"]);
     });
     this.logout();
   }
@@ -101,7 +101,7 @@ export class AuthService {
         })
         this.login(result.user);
         this.setUserData(result.user);
-        this.router.navigate(["input"]);
+        this.router.navigate(["/n2f/input"]);
       });
   }
 

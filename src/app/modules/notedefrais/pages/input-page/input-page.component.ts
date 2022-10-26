@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { NotedefraisService } from 'src/app/services/notedefrais.service';
-import { MessageComponent } from 'src/app/components/message/message.component';
-import { moment } from 'src/app/modules/material.module';
-import { AuthService } from 'src/app/services/auth.service';
+import { NotedefraisService } from 'src/app/modules/notedefrais/services/notedefrais.service';
+import { MessageComponent } from 'src/app/shared/components/message/message.component';
+import { moment } from 'src/app/shared/modules/material.module';
+import { AuthService } from 'src/app/modules/auth/auth.service';
 
 export const patternDate = "^\\d{2}[/]\\d{2}[/]\\d{4}$";
 export const patternAmount = "^([,|.]?[0-9])+$";
@@ -13,10 +13,10 @@ export const MESSAGE_SUCCESS = "Successfully created.";
 export const MESSAGE_FORM_ERROR = "Form is invalid.";
 
 @Component({
-  selector: "app-input",
-  templateUrl: "./input.component.html"
+  selector: "app-input-page",
+  templateUrl: "./input-page.component.html"
 })
-export class InputComponent implements OnInit {
+export class InputPageComponent implements OnInit {
 
   @ViewChild(MessageComponent) message: MessageComponent;
 
