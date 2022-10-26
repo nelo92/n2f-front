@@ -35,6 +35,7 @@ build/
 .firebaserc
 firebase.json
 firebase.config.ts
+firebase-debug.log
 
 ## Angular ###
 node_modules
