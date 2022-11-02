@@ -52,3 +52,10 @@ Need file <firebase.config> and put it in directory src/environnements
 
 - change structure of project with notion module
 
+### RELEASE NOTES -v.1.4.0
+
+- Add chart to view year progressive expense
+
+    // ,
+    // "chart.js": "^3.8.0",
+    // "ng2-charts": "^3.1.0"
