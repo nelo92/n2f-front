@@ -24,10 +24,10 @@ tr:hover {
   background-color: #d6d8d9;
 }
 
-.example-month-picker .mat-calendar-period-button {
+.mat-calendar-period-button {
   pointer-events: none;
 }
 
-.example-month-picker .mat-calendar-arrow {
+.mat-calendar-arrow {
   display: none;
-}
+} 

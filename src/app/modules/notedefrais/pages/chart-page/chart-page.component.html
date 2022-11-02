@@ -1,11 +1,33 @@
-<p>chart-page works!</p>
+<div class="container">
 
- <div style="display: block; " >
-    <canvas baseChart width="400" height="400"
-      [chartType]="'line'"
-      [datasets]="lineChartData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [legend]="lineChartLegend">
-    </canvas>
+  <div class="d-flex flex-column justify-content-center">
+    <div>
+      <div class="card my-2">
+        <div id="chart-form" class="card-body">
+          <div>
+            <label for="date" class="mr-2">Mois: </label>
+            <input id="date" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)"
+              placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required>
+            <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp startView="month" (yearSelected)="chosenYearHandler($event)"
+              (monthSelected)="chosenMonthHandler($event, dp)">
+            </mat-datepicker>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="d-flex flex-column justify-content-center m-4">
+    <div style="display: block; " >
+      <canvas baseChart width="400" height="400"
+        [chartType]="lineChartType"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </div>
+
+</div>
