@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
-import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { AuthService } from 'src/app/modules/auth/auth.service';
 import { NotedefraisService } from 'src/app/modules/notedefrais/services/notedefrais.service';
 import { MessageComponent } from 'src/app/shared/components/message/message.component';
 import { moment } from 'src/app/shared/modules/material.module';
-import { AuthService } from 'src/app/modules/auth/auth.service';
 
 export const patternDate = "^\\d{2}[/]\\d{2}[/]\\d{4}$";
 export const patternAmount = "^([,|.]?[0-9])+$";
@@ -28,7 +28,7 @@ export class InputPageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ndfService: NotedefraisService,
+    private noteDeFraisService: NotedefraisService,
     private authService: AuthService
   ) { }
 
@@ -53,7 +53,7 @@ export class InputPageComponent implements OnInit {
     }
     let d = this.inputForm.get("date").value.toDate();
     d.setHours(12, 0, 0, 0);
-    this.ndfService.add({
+    this.noteDeFraisService.add({
       user_uid: user.uid,
       date: d,
       amount: this.inputForm.get("amount").value.replace(",", ".")

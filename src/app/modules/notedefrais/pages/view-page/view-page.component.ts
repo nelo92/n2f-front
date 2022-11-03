@@ -1,32 +1,27 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
-import { Observable } from 'rxjs';
-import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl } from "@angular/forms";
+import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Moment } from 'moment';
-import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
-import { NotedefraisService } from 'src/app/modules/notedefrais/services/notedefrais.service';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/modules/auth/auth.service';
-import { MY_FORMATS_MM_YYYY } from 'src/app/shared/modules/material.module';
-import moment from 'moment';
+import { MatDialog } from "@angular/material/dialog";
+import moment, { Moment } from "moment";
+import { Observable } from "rxjs";
+import { AuthService } from "src/app/modules/auth/auth.service";
+import { NotedefraisService } from "src/app/modules/notedefrais/services/notedefrais.service";
+import { ConfirmDialogComponent } from "src/app/shared/components/confirm-dialog/confirm-dialog.component";
+import { MY_FORMATS_MM_YYYY } from "src/app/shared/modules/material.module";
+import { environment } from "src/environments/environment";
 
 const MESSAGE_DELETE = "Are you sure want to delete?";
 const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
 
 @Component({
-  selector: 'app-view-page',
-  templateUrl: './view-page.component.html',
-  styleUrls: ['./view-page.component.css'],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY },
-  ],
+  selector: "app-view-page",
+  templateUrl: "./view-page.component.html",
+  styleUrls: ["./view-page.component.css"],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }],
 })
 export class ViewPageComponent implements OnInit {
-
   date = new FormControl(moment());
 
   datas$: Observable<any[]>;
@@ -36,13 +31,11 @@ export class ViewPageComponent implements OnInit {
   displayTotal = false;
 
   constructor(
-    public dialog: MatDialog,
     private fb: FormBuilder,
-    private ndfService: NotedefraisService,
-    private authService: AuthService,
-    private http: HttpClient
-
-  ) { }
+    public dialog: MatDialog,
+    private noteDeFraisService: NotedefraisService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.loadDatas();
@@ -54,24 +47,25 @@ export class ViewPageComponent implements OnInit {
 
   delete(data) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message: MESSAGE_DELETE }
+      data: { message: MESSAGE_DELETE },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.action_delete(data);
       }
     });
   }
+
   action_delete(data) {
-    this.ndfService.delete(data);
+    this.noteDeFraisService.delete(data);
     this.loadDatas();
   }
 
   deleteAll() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { message: MESSAGE_DELETE_ALL }
+      data: { message: MESSAGE_DELETE_ALL },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.action_deleteAll();
       }
@@ -79,7 +73,7 @@ export class ViewPageComponent implements OnInit {
   }
 
   action_deleteAll() {
-    this.datas.forEach(data => this.ndfService.delete(data));
+    this.datas.forEach((data) => this.noteDeFraisService.delete(data));
     this.loadDatas();
   }
 
@@ -99,7 +93,7 @@ export class ViewPageComponent implements OnInit {
     this.date.setValue(ctrlValue);
   }
 
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+  chosenMonthHandler( normalizedMonth: Moment, datepicker: MatDatepicker<Moment> ) {
     const ctrlValue = this.date.value;
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
@@ -108,11 +102,11 @@ export class ViewPageComponent implements OnInit {
   }
 
   loadDatas() {
-    const user = this.authService.userData;
     let v = this.date.value;
     if (v != null) {
-      this.datas$ = this.ndfService.get(new Date(v), user.uid);
-      this.datas$.subscribe(datas => {
+      const user = this.authService.userData;
+      this.datas$ = this.noteDeFraisService.get(new Date(v), user.uid);
+      this.datas$.subscribe((datas) => {
         this.datas = datas;
         this.countTotal(this.datas);
       });
@@ -133,5 +127,4 @@ export class ViewPageComponent implements OnInit {
     var multiplier = Math.pow(10, dec);
     return (Math.round(val * multiplier) / multiplier).toFixed(dec);
   }
-
 }

@@ -1,19 +1,17 @@
-import { MAT_DATE_FORMATS } from "@angular/material/core";
-import {
-  moment,
-  MY_FORMATS_MM_YYYY,
-} from "src/app/shared/modules/material.module";
-import { MatDatepicker } from "@angular/material/datepicker";
-import { MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { FormBuilder, FormControl } from "@angular/forms";
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl } from "@angular/forms";
+import { MAT_DATE_FORMATS } from "@angular/material/core";
+import { MatDatepicker, MatDatepickerInputEvent, } from "@angular/material/datepicker";
 import { Moment } from "moment";
+import { NotedefraisService } from "src/app/modules/notedefrais/services/notedefrais.service";
+import { moment, MY_FORMATS_YYYY, } from "src/app/shared/modules/material.module";
+import { AuthService } from "./../../../auth/auth.service";
 
 @Component({
   selector: "app-chart-page",
   templateUrl: "./chart-page.component.html",
-  styleUrls: ["./chart-page.component.css"],
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }],
+  styleUrls: ["./chart-page.component.scss"],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_YYYY }],
 })
 export class ChartPageComponent implements OnInit {
   date = new FormControl(moment());
@@ -53,9 +51,14 @@ export class ChartPageComponent implements OnInit {
   };
   public lineChartLegend = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private notedefraisService: NotedefraisService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.loadDatas();
     this.lineChartData = [
       {
         data: [3, 1, 4, 2, 5, 6, 2],
@@ -66,19 +69,10 @@ export class ChartPageComponent implements OnInit {
       },
     ];
   }
-
-  chosenYearHandler(normalizedYear: Moment) {
+  
+  chosenYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
     const ctrlValue = this.date.value;
     ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
-
-  chosenMonthHandler(
-    normalizedMonth: Moment,
-    datepicker: MatDatepicker<Moment>
-  ) {
-    const ctrlValue = this.date.value;
-    ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
     datepicker.close();
     this.loadDatas();
@@ -88,5 +82,14 @@ export class ChartPageComponent implements OnInit {
     this.loadDatas();
   }
 
-  loadDatas() {}
+  loadDatas() {
+    console.log("loadDatas...");
+    let v = this.date.value;
+    if (v != null) {
+      const user = this.authService.userData;
+      this.notedefraisService.getByYear(new Date(v), user.uid);
+    }
+    console.log("loadDatas.");
+  }
+  
 }

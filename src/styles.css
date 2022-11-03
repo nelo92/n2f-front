@@ -15,3 +15,12 @@
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.panel-month-picker .mat-calendar-period-button,
+.panel-year-picker .mat-calendar-period-button {
+    pointer-events: none !important;
+}
+.panel-month-picker .mat-calendar-arrow,
+.panel-year-picker .mat-calendar-arrow {
+    display: none !important;
+}
