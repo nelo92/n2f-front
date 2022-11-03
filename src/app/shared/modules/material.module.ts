@@ -11,6 +11,19 @@ import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
 export const moment = _rollupMoment || _moment;
 
+
+export const MY_FORMAT_DD_MM_YYYY = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 export const MY_FORMATS_MM_YYYY = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -23,15 +36,15 @@ export const MY_FORMATS_MM_YYYY = {
   },
 };
 
-export const MY_FORMAT_DD_MM_YYYY = {
+export const MY_FORMATS_YYYY = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'YYYY',
   },
   display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMM YYYY',
+    dateInput: 'YYYY',
+    monthYearLabel: 'YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
+    monthYearA11yLabel: 'YYYY',
   },
 };
 

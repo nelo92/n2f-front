@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="d-flex flex-column justify-content-center">
+    <div>
+      <div class="card my-2">
+        <div class="card-body">
+          <div>
+            <label for="date" class="mr-2">Mois: </label>
+            <input id="date" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)" placeholder="yyyy"
+              maxlength="4" tabindex="1" autocomplete="off" required>
+            <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp panelClass="panel-year-picker" startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)">
+            </mat-datepicker>           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="d-flex flex-column justify-content-center m-4">
+    <div style="display: block; " >
+      <canvas baseChart width="400" height="400"
+        [chartType]="lineChartType"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>

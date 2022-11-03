@@ -10,6 +10,9 @@
 			<li *ngIf="authService.isLoggedIn" class="nav-item">
 				<a class="nav-link" routerLink="/n2f/view">View</a>
 			</li>
+			<li *ngIf="authService.isLoggedIn" class="nav-item">
+				<a class="nav-link" routerLink="/n2f/chart">Chart</a>
+			</li>
 		</ul>
 		<span *ngIf="authService.isLoggedIn" (click)="authService.logout_with_google()" class="ml-auto pl-3">
 			<button class="btn btn-danger btn-sign-out" title="Goodbye : {{authService.userData.email}}">
