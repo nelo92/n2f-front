@@ -18,7 +18,7 @@ import { DataId } from "./../../services/notedefrais.service";
 @Component({
   selector: "app-chart-page",
   templateUrl: "./chart-page.component.html",
-  styleUrls: ["./chart-page.component.scss"],
+  styleUrls: ["./chart-page.component.css"],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_YYYY }]
 })
 export class ChartPageComponent implements OnInit {
