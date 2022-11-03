@@ -75,11 +75,4 @@ export class InputPageComponent implements OnInit {
     return this.inputForm.controls[controlName].hasError(errorName);
   };
 
-  // formartDate(d) {
-  //   let date = ("0" + d.getDate()).slice(-2);
-  //   let month = ("0" + (d.getMonth() + 1)).slice(-2);
-  //   let year = d.getFullYear();
-  //   return date + "/" + month + "/" + year;
-  // }
-
 }

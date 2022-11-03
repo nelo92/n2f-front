@@ -15,6 +15,11 @@ Need file <firebase.config> and put it in directory src/environnements
 
 ## TO DO
 
+- connexion: implement id & pwd (with spec. page create user)
+- connexion: implement facebook
+- connexion: implement twitter
+- connexion: implement microsoft
+- connexion: implement github
 - add libelle to insertion
 
 ## RELEASE NOTES
@@ -51,6 +56,7 @@ Need file <firebase.config> and put it in directory src/environnements
 
 - change structure of project with notion module
 
-### RELEASE NOTES v.1.4.0
+### RELEASE NOTES v.2.0.0
+
 - Improve selection month only in view page
 - Add chart to view year progressive expense

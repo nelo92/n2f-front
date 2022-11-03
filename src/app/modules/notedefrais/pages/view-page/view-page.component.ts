@@ -1,3 +1,4 @@
+import { Util } from './../../../../shared/utils/util';
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
@@ -19,7 +20,7 @@ const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
   selector: "app-view-page",
   templateUrl: "./view-page.component.html",
   styleUrls: ["./view-page.component.css"],
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }]
 })
 export class ViewPageComponent implements OnInit {
   date = new FormControl(moment());
@@ -117,14 +118,10 @@ export class ViewPageComponent implements OnInit {
     this.total = 0;
     this.displayTotal = false;
     datas.forEach((data) => {
-      this.total += parseFloat(data.amount);
+      this.total += Util.stringToNumber(data.amount);
       this.displayTotal = true;
     });
-    this.total = parseFloat(this.numberFormat(this.total, 2));
+    this.total = Util.stringToNumber(this.total);
   }
 
-  numberFormat(val, dec) {
-    var multiplier = Math.pow(10, dec);
-    return (Math.round(val * multiplier) / multiplier).toFixed(dec);
-  }
 }
