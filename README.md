@@ -63,3 +63,4 @@ solutionn 2 > done (in work): load all data by month
 
 - Improve selection month only in view page
 - Add chart to view year progressive expense
+
