@@ -8,6 +8,5 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LoginNetworkComponent implements OnInit {
   constructor(public authService: AuthService) {}
-
   ngOnInit() {}
 }

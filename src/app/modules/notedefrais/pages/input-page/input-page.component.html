@@ -7,29 +7,30 @@
           <div class="form-group">
             <label for="date">Date</label>
             <div>
-              <input id="date" [matDatepicker]="dp" formControlName="date" class="datepicker"
+              <input id="date" class="datepicker" formControlName="date" [matDatepicker]="dp"
                 (dateInput)="onInputDate($event)" (dateChange)="onChangeDate($event)" placeholder="dd/mm/yyyy"
-                maxlength="10" tabindex="1" autocomplete="off" required>
+                maxlength="10" tabindex="1" autocomplete="off" required
+                [ngClass]="{ 'is-invalid': (controls.date.dirty || controls.date.touched) && hasError('date', 'required') }">
               <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-              <mat-datepicker #dp></mat-datepicker>
-              <div class="alert alert-danger"
+              <mat-datepicker #dp></mat-datepicker>              
+              <div class="invalid-feedback"
                 *ngIf="(controls.date.dirty || controls.date.touched) && hasError('date', 'required')">Date required.
               </div>
             </div>
           </div>
           <div clsss="form-group">
             <label for="amount">Amount</label>
-            <input id="amount" class="form-control" formControlName="amount" tabindex="2" autocomplete="off" required>
-            <div *ngIf="(controls.amount.dirty || controls.amount.touched) && controls.amount.errors"
-              class="alert alert-danger">
-              <div *ngIf="controls.amount.errors.required">Amount required.</div>
-              <div *ngIf="controls.amount.errors.pattern">Amount invalid numeric.</div>
+            <input id="amount" class="form-control" formControlName="amount" tabindex="2" autocomplete="off" required
+              [ngClass]="{ 'is-invalid': (controls.amount.dirty || controls.amount.touched) && controls.amount.errors }">
+            <div *ngIf="(controls.amount.dirty || controls.amount.touched) && controls.amount.errors">
+              <div class="invalid-feedback" *ngIf="controls.amount.errors.required">Amount required.</div>
+              <div class="invalid-feedback" *ngIf="controls.amount.errors.pattern">Amount invalid numeric.</div>
             </div>
           </div>
           <div clsss="form-group">
-            <div class="float-right d-inline mt-2">
+            <div class="float-right d-inline mt-2">          
               <button type="submit" class="btn btn-sm btn-primary mr-2" [disabled]="!inputForm.valid">Submit</button>
-              <button type="submit" class="btn btn-sm btn-danger mr-2" (click)="onReset()">Reset</button>
+              <button type="button" class="btn btn-sm btn-danger mr-2" (click)="onReset()">Reset</button>
             </div>
           </div>
         </form>

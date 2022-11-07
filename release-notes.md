@@ -34,3 +34,8 @@
 
 * Improve selection month only in view page
 * Add chart to view year progressive expense
+
+## v2.1.0
+
+* Add login with email/pwd
+* Add create account with email/pwd (with captha : ngx-captcha)

@@ -1,6 +1,7 @@
-import { AuthService } from '../../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -9,15 +10,39 @@ import { Router } from '@angular/router';
 })
 export class SignInPageComponent implements OnInit {
 
+  loginForm: FormGroup = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required]
+  });
+  loading = false;
+  submitted = false;
+
   constructor(
     public authService: AuthService,
     public router: Router,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.router.navigate(["/n2f/input"]);
     }
+
+    // this.loginForm = this.formBuilder.group({
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required]
+    // });
+  
+  }
+  get controls() { return this.loginForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.submitted = false;
   }
 
 }

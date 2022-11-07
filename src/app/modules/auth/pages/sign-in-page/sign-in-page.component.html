@@ -1,24 +1,39 @@
-<div class="container">
-    <div class="d-flex flex-column justify-content-center">
+<div class="container wlogin">   
+    <app-login-network></app-login-network>
+    <div class="d-flex justify-content-center">  
         <div class="card my-2">
             <div class="card-body">
-                <button class="btn btn-block btn-secondary" (click)="authService.login_with_google()">
-                    <i class="fab fa-google mr-2"></i>
-                    Login with Google</button>
-                <button class="btn btn-block btn-secondary" disabled (click)="authService.login_with_facebook()">
-                    <i class="fab fa-facebook-f mr-2"></i>
-                    Login with Facebook
-                </button>
-                <button class="btn btn-block btn-secondary" disabled>
-                    <i class="fab fa-twitter mr-2"></i>
-                    Login with Twitter</button>
-                <button class="btn btn-block btn-secondary" disabled>
-                    <i class="fab fa-microsoft mr-2"></i>
-                    Login with Microsoft</button>
-                <button class="btn btn-block btn-secondary" disabled>
-                    <i class="fab fa-github mr-2"></i>
-                    Login with Github</button>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" formControlName="username" class="form-control" 
+                            tabindex="1" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': submitted && controls.username.errors }" />
+                        <div *ngIf="submitted && controls.username.errors" class="invalid-feedback">
+                            <div *ngIf="controls.username.errors.required">Username is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" formControlName="password" class="form-control" 
+                            tabindex="2" autocomplete="off"
+                            [ngClass]="{ 'is-invalid': submitted && controls.password.errors }" />                    
+                        <div *ngIf="submitted  && controls.password.errors" class="invalid-feedback">
+                            <div *ngIf="controls.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group justify-content-center">
+                        <button [disabled]="loading" class="btn btn-block btn-sm btn-primary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Login
+                        </button>                      
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center" style="font-size:12px;">
+        Don’t have an account? 
+        <a href="/auth/sign-up" class="ml-1">Sign up</a>          
     </div>
 </div>
