@@ -13,8 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class SignUpPageComponent implements OnInit {
 
   loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+    recaptcha: ['', Validators.required]
   });
   
   loading = false;
@@ -41,13 +42,8 @@ export class SignUpPageComponent implements OnInit {
     if (this.authService.isLoggedIn) {
       this.router.navigate(["/n2f/input"]);
     }
-
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-  
   }
+
   get controls() { return this.loginForm.controls; }
 
   onSubmit() {

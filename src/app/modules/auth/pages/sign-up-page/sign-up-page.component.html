@@ -1,49 +1,47 @@
 <div class="container wlogin">   
     <app-login-network></app-login-network>
-    <div class="d-flex justify-content-center">  
-        <div class="card my-2">
-            <div class="card-body">
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" formControlName="username" class="form-control" 
-                            tabindex="1" autocomplete="off"
-                            [ngClass]="{ 'is-invalid': submitted && controls.username.errors }" />
-                        <div *ngIf="submitted && controls.username.errors" class="invalid-feedback">
-                            <div *ngIf="controls.username.errors.required">Username is required</div>
-                        </div>
+    <div class="card my-2">
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> 
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" class="form-control" 
+                        tabindex="1" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && controls.email.errors }" />
+                    <div *ngIf="submitted && controls.email.errors" class="invalid-feedback">
+                        <div *ngIf="controls.email.errors.required">Email is required</div>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" formControlName="password" class="form-control" 
-                            tabindex="2" autocomplete="off"
-                            [ngClass]="{ 'is-invalid': submitted && controls.password.errors }" />                    
-                        <div *ngIf="submitted  && controls.password.errors" class="invalid-feedback">
-                            <div *ngIf="controls.password.errors.required">Password is required</div>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" 
+                        tabindex="2" autocomplete="off"
+                        [ngClass]="{ 'is-invalid': submitted && controls.password.errors }" />                    
+                    <div *ngIf="submitted  && controls.password.errors" class="invalid-feedback">
+                        <div *ngIf="controls.password.errors.required">Password is required</div>
                     </div>
-                    <div class="form-group">
-                        <ngx-recaptcha2 #captchaElem formControlName="recaptcha"
-                            siteKey="6Ld0P-kiAAAAAAMDPIw9NXyFeYhQd0JquuANBgw6" 
-                            [size]="size" [hl]="lang" [theme]="theme" [type]="type"
-                            (success)="handleSuccess($event)">
-                       </ngx-recaptcha2>
-                    </div>
-                    <div class="form-group justify-content-center">
-                        <button [disabled]="loading" class="btn btn-block btn-sm btn-primary">
-                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                            Sign up
-                        </button>                      
-                    </div>
-                    <div class="form-group justify-content-center" style="font-size:12px;">
-                        By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <ngx-recaptcha2 #captchaElem formControlName="recaptcha"
+                        siteKey="6LdddukiAAAAABVVVuI9oGUCUIkE6TH8hbZf2OGt" 
+                        [size]="size" [hl]="lang" [theme]="theme" [type]="type"
+                        (success)="handleSuccess($event)">
+                    </ngx-recaptcha2>
+                </div>
+                <div class="form-group justify-content-center">
+                    <button [disabled]="loading" class="btn btn-block btn-sm btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Sign up
+                    </button>                      
+                </div>
+                <div class="form-group justify-content-center fs-12" >
+                    By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy
+                </div>
+            </form>
         </div>
     </div>
-    <div class="d-flex justify-content-center" style="font-size:12px;">
+    <div class="d-flex justify-content-center fs-12">
       Already have an account? 
-        <a href="/auth/sign-in" class="ml-1">Log in</a>          
+      <a href="/auth/sign-in" class="ml-1">Log in</a>          
     </div> 
 </div>

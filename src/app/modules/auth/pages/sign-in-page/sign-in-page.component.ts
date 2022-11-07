@@ -11,7 +11,7 @@ import { AuthService } from '../../auth.service';
 export class SignInPageComponent implements OnInit {
 
   loginForm: FormGroup = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   });
   loading = false;
@@ -26,14 +26,9 @@ export class SignInPageComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.router.navigate(["/n2f/input"]);
-    }
-
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required],
-    //   password: ['', Validators.required]
-    // });
-  
+    }  
   }
+
   get controls() { return this.loginForm.controls; }
 
   onSubmit() {
