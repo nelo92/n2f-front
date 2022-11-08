@@ -1,4 +1,3 @@
-import { Util } from './../../../../shared/utils/util';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -7,13 +6,14 @@ import {
   MatDatepickerInputEvent
 } from "@angular/material/datepicker";
 import { Moment } from "moment";
+import { AuthService } from 'src/app/modules/auth/auth.service';
 import { NotedefraisService } from "src/app/modules/notedefrais/services/notedefrais.service";
+import { DataId } from 'src/app/shared/models/firebase.models';
 import {
   moment,
   MY_FORMATS_YYYY
 } from "src/app/shared/modules/material.module";
-import { AuthService } from "./../../../auth/auth.service";
-import { DataId } from "./../../services/notedefrais.service";
+import { Util } from "src/app/shared/utils/util";
 
 @Component({
   selector: "app-chart-page",

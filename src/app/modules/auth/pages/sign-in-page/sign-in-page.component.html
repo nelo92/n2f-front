@@ -19,6 +19,7 @@
                         [ngClass]="{ 'is-invalid': submitted && controls.password.errors }" />                    
                     <div *ngIf="submitted  && controls.password.errors" class="invalid-feedback">
                         <div *ngIf="controls.password.errors.required">Password is required</div>
+                        <div *ngIf="controls.email.errors.pattern">Email must be a valid email address</div>
                     </div>
                 </div>
                 <div class="form-group justify-content-center">

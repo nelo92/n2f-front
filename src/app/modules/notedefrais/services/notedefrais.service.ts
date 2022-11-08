@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { firestore } from 'firebase';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as FirebaseConstants from '../../../shared/constants/firebase.constants';
-
-export interface Data { user_uid: string; date: firestore.Timestamp; amount: string; }
-export interface DataId extends Data { id: string; }
+import * as FirebaseConstants from 'src/app//shared/constants/firebase.constants';
+import { Data, DataId } from 'src/app/shared/models/firebase.models';
 
 @Injectable()
 export class NotedefraisService {

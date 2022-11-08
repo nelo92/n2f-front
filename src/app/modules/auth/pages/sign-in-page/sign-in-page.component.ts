@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as Constants from 'src/app/shared/constants';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { AuthService } from '../../auth.service';
 export class SignInPageComponent implements OnInit {
 
   loginForm: FormGroup = this.formBuilder.group({
-    email: ['', Validators.required],
+    email: ['', Validators.required, [Validators.required, Validators.pattern(Constants.REGEX_EMAIL)]],
     password: ['', Validators.required]
   });
   loading = false;
