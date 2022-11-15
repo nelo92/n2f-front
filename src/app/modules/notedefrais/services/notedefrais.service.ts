@@ -22,8 +22,7 @@ export class NotedefraisService {
   // get(date, user_uid): Observable<DataId[]> {
   //   let dateStart = this.getMonthDateStart(date);
   //   let dateEnd = this.getMonthDateEnd(date);
-  //   this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATAS,
-  //     ref => ref
+  //   this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATAS, ref => ref
   //       .where(FirebaseConstants.FIELD_DATE, ">=", dateStart)
   //       .where(FirebaseConstants.FIELD_DATE, "<", dateEnd)
   //       .orderBy(FirebaseConstants.FIELD_DATE, "asc")
@@ -67,8 +66,7 @@ export class NotedefraisService {
     // console.log("end=", this.printDate(dateEnd));
     this.dataCollection = this.afs
       .doc(`${FirebaseConstants.COLLECTION_USERS}/${user_uid}`)
-      .collection(FirebaseConstants.COLLECTION_DATAS, (ref) =>
-        ref
+      .collection(FirebaseConstants.COLLECTION_DATAS, (ref) => ref
           .where(FirebaseConstants.FIELD_DATE, ">=", dateStart)
           .where(FirebaseConstants.FIELD_DATE, "<", dateEnd)
           .orderBy(FirebaseConstants.FIELD_DATE, "asc")

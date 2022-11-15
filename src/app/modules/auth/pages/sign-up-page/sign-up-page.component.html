@@ -1,3 +1,4 @@
+<app-message></app-message>
 <div class="container wlogin">   
     <app-login-network></app-login-network>
     <div class="card my-2">
@@ -25,10 +26,9 @@
                 <div class="form-group">
                     <ngx-recaptcha2 #captchaElem formControlName="recaptcha"
                         siteKey="6LdddukiAAAAABVVVuI9oGUCUIkE6TH8hbZf2OGt" 
-                        [size]="size" [hl]="lang" [theme]="theme" [type]="type"
-                        (success)="handleSuccess($event)">
+                        [size]="size" [hl]="lang" [theme]="theme" [type]="type">                  
                     </ngx-recaptcha2>
-                    <div *ngIf="submitted  && controls.recaptcha.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && controls.recaptcha.errors" class="invalid-feedback">
                         <div *ngIf="controls.password.errors.required">Captcha is required</div>
                     </div>
                 </div>

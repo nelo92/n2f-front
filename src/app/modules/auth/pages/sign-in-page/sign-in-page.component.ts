@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { MessageComponent } from 'src/app/shared/components/message/message.component';
 import * as Constants from 'src/app/shared/constants';
-import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-sign-in-page',
@@ -11,10 +12,9 @@ import { AuthService } from '../../auth.service';
 })
 export class SignInPageComponent implements OnInit {
 
-  loginForm: FormGroup = this.formBuilder.group({
-    email: ['', Validators.required, [Validators.required, Validators.pattern(Constants.REGEX_EMAIL)]],
-    password: ['', Validators.required]
-  });
+  @ViewChild(MessageComponent) message: MessageComponent;
+
+  loginForm: FormGroup;
   loading = false;
   submitted = false;
 
@@ -28,6 +28,10 @@ export class SignInPageComponent implements OnInit {
     if (this.authService.isLoggedIn) {
       this.router.navigate(["/n2f/input"]);
     }  
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern(Constants.REGEX_EMAIL)]],
+      password: ['', Validators.required]
+    });
   }
 
   get controls() { return this.loginForm.controls; }
@@ -37,8 +41,12 @@ export class SignInPageComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    this.loading = true;
-    this.submitted = false;
+    this.loading = true;    
+    const email = this.loginForm.controls.email.value;
+    const pwd = this.loginForm.controls.password.value;
+    this.authService.login_with_local(email, pwd);
+
+    this.loading = false;  
   }
 
 }
