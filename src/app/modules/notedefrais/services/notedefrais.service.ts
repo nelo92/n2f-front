@@ -7,6 +7,7 @@ import { Data, DataId } from 'src/app/shared/models/firebase.models';
 
 @Injectable()
 export class NotedefraisService {
+  
   private dataCollection: AngularFirestoreCollection<Data>;
   datas$: Observable<DataId[]>;
 
@@ -18,34 +19,6 @@ export class NotedefraisService {
     let year = d.getFullYear();
     return date + "/" + month + "/" + year;
   }
-
-  // get(date, user_uid): Observable<DataId[]> {
-  //   let dateStart = this.getMonthDateStart(date);
-  //   let dateEnd = this.getMonthDateEnd(date);
-  //   this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATAS, ref => ref
-  //       .where(FirebaseConstants.FIELD_DATE, ">=", dateStart)
-  //       .where(FirebaseConstants.FIELD_DATE, "<", dateEnd)
-  //       .orderBy(FirebaseConstants.FIELD_DATE, "asc")
-  //   )
-  //   this.datas$ = this.dataCollection.snapshotChanges().pipe(
-  //     map(actions => actions.map(a => {
-  //       const data = a.payload.doc.data() as Data;
-  //       const id = a.payload.doc.id;
-  //       return { id, ...data };
-  //     }))
-  //   )
-  //   return this.datas$;
-  // }
-  // add(data: Data) {
-  //   this.dataCollection = this.afs.collection<Data>(FirebaseConstants.COLLECTION_DATAS);
-  //   this.dataCollection.add(data)
-  //     .then(function (doc) {
-  //       console.log("Document written with ID: ", doc.id);
-  //     })
-  //     .catch(function (error) {
-  //       console.error("Error adding document: ", error);
-  //     })
-  // }
 
   public get(date: Date, user_uid: string): Observable<DataId[]> {
     // console.log("get: date=", date, "user_uid=", user_uid);
@@ -89,24 +62,16 @@ export class NotedefraisService {
       .collection(FirebaseConstants.COLLECTION_DATAS);
     this.dataCollection
       .add(data)
-      .then(function (doc) {
-        console.log("Document written with ID: ", doc.id);
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
+      .then(doc => console.log("Document written with ID: ", doc.id))
+      .catch( error =>  console.error("Error adding document: ", error));
   }
 
   public delete(data: DataId) {
     this.dataCollection
       .doc(data.id)
       .delete()
-      .then(function () {
-        console.log("Document successfully deleted!");
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
+      .then( () => console.log("Document successfully deleted!"))
+      .catch(error => console.error("Error removing document: ", error));
   }
 
   /** get first day of current month and year */
@@ -140,7 +105,6 @@ export class NotedefraisService {
   /** get first day and first month of current year date */
   private getYearDateStart(date: Date): Date {
     var d = new Date(),
-      month = date.getMonth(),
       year = date.getFullYear();
     d.setDate(1);
     d.setMonth(0);
@@ -152,7 +116,6 @@ export class NotedefraisService {
   /** get first day and first month of next current year date */
   private getYearDateEnd(date: Date): Date {
     var d = new Date(),
-    month = date.getMonth(),
     year = date.getFullYear();
     d.setDate(1);
     d.setMonth(0);
@@ -160,4 +123,5 @@ export class NotedefraisService {
     d.setHours(0, 0, 0, 0);
     return d;
   }
+  
 }

@@ -57,8 +57,8 @@ export class SignUpPageComponent implements OnInit {
     const email = this.loginForm.controls.email.value;
     const pwd = this.loginForm.controls.password.value;
     this.authService.isExistUserEmailNetwork(email, Network.Local)
-      .then((isExist) => {
-        if (isExist) {
+      .then((result) => {
+        if (result) {
           this.message.show_error(MESSAGE_USER_EMAIL_ALREADY_EXIST);
         } else {          
           this.authService.create_login_with_local(email, pwd);

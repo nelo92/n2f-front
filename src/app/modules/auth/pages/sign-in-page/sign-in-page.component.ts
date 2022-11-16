@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/modules/auth/auth.service';
 import { MessageComponent } from 'src/app/shared/components/message/message.component';
 import * as Constants from 'src/app/shared/constants';
 
+export const MESSAGE_USER_EMAIL_NOT_EXIST = "User with email and password does not exist.";
+
 @Component({
   selector: 'app-sign-in-page',
   templateUrl: './sign-in-page.component.html',
@@ -43,10 +45,13 @@ export class SignInPageComponent implements OnInit {
     }
     this.loading = true;    
     const email = this.loginForm.controls.email.value;
-    const pwd = this.loginForm.controls.password.value;
-    this.authService.login_with_local(email, pwd);
-
-    this.loading = false;  
+    const pwd = this.loginForm.controls.password.value;  
+     this.authService.login_with_local(email, pwd).then((result) => {
+       if (!result) {
+         this.message.show_error(MESSAGE_USER_EMAIL_NOT_EXIST);
+       }
+     })
+     .finally(()=> {this.loading = false });
   }
 
 }

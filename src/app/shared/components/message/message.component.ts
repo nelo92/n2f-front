@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 export const enum Level { INFO = "INFO", ERROR = "ERROR" }
 
@@ -9,22 +9,30 @@ export const MSG_ERROR = "Error - ";
   templateUrl: './message.component.html'
 })
 
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, OnDestroy {
 
   v_show: boolean;
   v_text: string;
   v_level: Level;
 
-  constructor() {
+  constructor() { }
+  
+  ngOnInit() { 
     this.init();
   }
 
-  ngOnInit() { }
-
+  ngOnDestroy(): void {    
+    this.hide();
+  }
+  
   init() {
     this.v_show = false;
     this.v_text = "";
     this.v_level = Level.INFO;
+  }
+  
+  hide() {
+    setTimeout(() => { this.init() }, 3000);
   }
 
   show(level: Level, text: string) {
@@ -38,13 +46,10 @@ export class MessageComponent implements OnInit {
     this.show(Level.INFO, text);
     this.hide();
   }
+
   show_error(text: string) {
     this.show(Level.ERROR, MSG_ERROR + text);
     this.hide();
-  }
-
-  hide() {
-    setTimeout(() => { this.init() }, 3000);
   }
 
 }

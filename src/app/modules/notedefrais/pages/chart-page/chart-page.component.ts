@@ -94,7 +94,7 @@ export class ChartPageComponent implements OnInit {
         .subscribe((datas) => {
           this.totals = this.getTotals(datas);
           this.createLineChartData(this.totals);
-          console.log("Totals=>", this.totals);
+          // console.log("Totals=>", this.totals);
         });
         // Solution 2 : load data by each month on year
         // ...
@@ -124,7 +124,6 @@ export class ChartPageComponent implements OnInit {
         .reduce((sum, current) => sum + current, 0);
       results[month] = result;
     }
-    console.log('util', Util.stringToNumber('1'))
     return results;
   }
   private printDate(d: Date) {
