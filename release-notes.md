@@ -34,3 +34,7 @@
 
 * Improve selection month only in view page
 * Add chart to view year progressive expense
+
+## v2.1.0
+
+* Add feature login with email/pwd

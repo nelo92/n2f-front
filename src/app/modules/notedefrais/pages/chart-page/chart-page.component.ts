@@ -1,4 +1,3 @@
-import { Util } from './../../../../shared/utils/util';
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { MAT_DATE_FORMATS } from "@angular/material/core";
@@ -7,13 +6,14 @@ import {
   MatDatepickerInputEvent
 } from "@angular/material/datepicker";
 import { Moment } from "moment";
+import { AuthService } from 'src/app/modules/auth/auth.service';
 import { NotedefraisService } from "src/app/modules/notedefrais/services/notedefrais.service";
+import { DataId } from 'src/app/shared/models/firebase.models';
 import {
   moment,
   MY_FORMATS_YYYY
 } from "src/app/shared/modules/material.module";
-import { AuthService } from "./../../../auth/auth.service";
-import { DataId } from "./../../services/notedefrais.service";
+import { Util } from "src/app/shared/utils/util";
 
 @Component({
   selector: "app-chart-page",
@@ -85,16 +85,16 @@ export class ChartPageComponent implements OnInit {
   }
 
   loadDatas() {
-    let v = this.date.value;
-    if (v != null) {
+    const value = this.date.value;
+    if (value) {
       const user = this.authService.userData;
       // Solution 1 : load data by year
       this.notedefraisService
-        .getByYear(new Date(v), user.uid)
+        .getByYear(new Date(value), user.uid)
         .subscribe((datas) => {
           this.totals = this.getTotals(datas);
           this.createLineChartData(this.totals);
-          console.log("Totals=>", this.totals);
+          // console.log("Totals=>", this.totals);
         });
         // Solution 2 : load data by each month on year
         // ...
@@ -124,7 +124,6 @@ export class ChartPageComponent implements OnInit {
         .reduce((sum, current) => sum + current, 0);
       results[month] = result;
     }
-    console.log('util', Util.stringToNumber('1'))
     return results;
   }
   private printDate(d: Date) {
