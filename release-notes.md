@@ -37,5 +37,4 @@
 
 ## v2.1.0
 
-* Add login with email/pwd
-* Add create account with email/pwd (with captha : ngx-captcha)
+* Add feature login with email/pwd

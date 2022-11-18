@@ -3,7 +3,6 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
-import { unwatchFile } from 'fs';
 import { Network, User } from 'src/app/shared/models/firebase.models';
 import { v4 as uuidv4 } from 'uuid';
 import * as FirebaseConstants from '../../shared/constants/firebase.constants';
@@ -23,9 +22,8 @@ export class AuthService {
   ) {
     if (this.isLoggedIn) {
       const userStored: User = JSON.parse(localStorage.getItem("user"));
-      if (userStored.network == Network.Local) {
-        this.login(userStored);
-      } else {        
+      this.login(userStored);
+      if (userStored.network != Network.Local) {      
         this.afAuth.authState.subscribe((user) => {
             this.login(user ? user : null);
         });

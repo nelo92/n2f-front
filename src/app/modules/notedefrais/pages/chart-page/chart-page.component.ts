@@ -85,12 +85,12 @@ export class ChartPageComponent implements OnInit {
   }
 
   loadDatas() {
-    let v = this.date.value;
-    if (v != null) {
+    const value = this.date.value;
+    if (value) {
       const user = this.authService.userData;
       // Solution 1 : load data by year
       this.notedefraisService
-        .getByYear(new Date(v), user.uid)
+        .getByYear(new Date(value), user.uid)
         .subscribe((datas) => {
           this.totals = this.getTotals(datas);
           this.createLineChartData(this.totals);

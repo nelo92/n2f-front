@@ -24,7 +24,8 @@ https://trello.com/b/OOIcPt5F/n2f-notedefrais
 * connexion: implement github
 * add libelle to insertion
 * chart : 
-solutionn 1 > todo : load data by each month MORE EFFICIENT,  
-solutionn 2 > done (in work): load all data by month 
+solution 1 > todo : load data by each month MORE EFFICIENT,  
+solution 2 > done (in work): load all data by month 
+* add feature forgot password (for login with email/pwd)
 
 ## [RELEASE NOTES](./release-notes.md)

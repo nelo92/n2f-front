@@ -103,10 +103,10 @@ export class ViewPageComponent implements OnInit {
   }
 
   loadDatas() {
-    let v = this.date.value;
-    if (v != null) {
+    const value = this.date.value;
+    if (value) {
       const user = this.authService.userData;
-      this.datas$ = this.noteDeFraisService.get(new Date(v), user.uid);
+      this.datas$ = this.noteDeFraisService.get(new Date(value), user.uid);
       this.datas$.subscribe((datas) => {
         this.datas = datas;
         this.countTotal(this.datas);
