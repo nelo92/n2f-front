@@ -14,6 +14,9 @@ Application de gestion de notes de frais : saisie des dépenses, visualisation p
 
 ### Pré-requis
 
+- Node.js 16
+- `@angular/cli` installé globalement : `npm install -g @angular/cli`
+
 Créer le fichier `src/environments/firebase.config.ts` (non versionné, contient la config Firebase du projet) :
 
 ```ts
@@ -43,6 +46,7 @@ npm start        # lance le serveur de dev (ng serve)
 | `npm run e2e`    | Tests end-to-end (Protractor)             |
 | `npm run deploy` | Build prod + déploiement Firebase         |
 
+
 ## Environnements déployés
 
 | Environnement | URL |
@@ -50,22 +54,8 @@ npm start        # lance le serveur de dev (ng serve)
 | Production | https://note2frais.web.app / https://note2frais.firebaseapp.com |
 | Legacy / ancien domaine | https://nodedefrais.web.app / https://nodedefrais.firebaseapp.com |
 
-## Suivi de projet
+## [Commandes Firebase](./docs/firebase-command.md)
 
-Board Trello : https://trello.com/b/OOIcPt5F/n2f-notedefrais
+## [Notes de version](./docs/release-notes.md)
 
-## TODO
-
-**Authentification**
-- [x] Email & mot de passe (v2.1.0)
-- [ ] Facebook
-- [ ] Twitter
-- [ ] Microsoft
-- [ ] GitHub
-- [ ] Mot de passe oublié
-
-**Fonctionnalités**
-- [ ] Ajouter un libellé à la saisie
-- [ ] Graphiques : chargement des données mois par mois (plus efficient que le chargement complet par année, actuellement en place)
-
-## [Notes de version](./release-notes.md)
+## [Suivi de projet Trello](https://trello.com/b/OOIcPt5F/n2f-notedefrais)

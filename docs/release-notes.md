@@ -38,3 +38,7 @@
 ## v2.1.0
 
 * Add feature login with email/pwd
+
+## v2.1.1
+
+* Refonte de la documentation
