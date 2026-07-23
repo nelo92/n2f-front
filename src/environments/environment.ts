@@ -6,4 +6,5 @@ export const environment = {
   // urlExport: "https://europe-west1-nodedefrais.cloudfunctions.net/api/export",
   urlExport: "http://localhost:5001/nodedefrais/europe-west1/api/export",
   production: false,
+  activeRedirection: true,
 }

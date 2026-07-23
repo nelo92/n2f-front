@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'my-app',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent  {
   appName = "N2F"
+  activeRedirection = environment.activeRedirection;
  }

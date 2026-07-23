@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppComponent } from "./app.component";
+import { RedirectionComponent } from "./redirection/redirection.component";
 import { RootModule } from "./modules/root/root.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
@@ -27,7 +28,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    RedirectionComponent
   ],
   bootstrap: [AppComponent],
 })

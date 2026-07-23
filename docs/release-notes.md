@@ -42,3 +42,7 @@
 ## v2.1.1
 
 * Refonte de la documentation
+
+## v2.1.2
+
+* Ajout d'une page de redirection paramétrable (`activeRedirection`)
