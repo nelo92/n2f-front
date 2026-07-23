@@ -1,3 +1,8 @@
-<app-header [appName]=appName></app-header>
-<router-outlet></router-outlet>
-<app-footer [appName]=appName></app-footer>
+<ng-container *ngIf="!activeRedirection; else redirectionBlock">
+  <app-header [appName]=appName></app-header>
+  <router-outlet></router-outlet>
+  <app-footer [appName]=appName></app-footer>
+</ng-container>
+<ng-template #redirectionBlock>
+  <app-redirection></app-redirection>
+</ng-template>
