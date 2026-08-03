@@ -44,6 +44,6 @@ firebase use nodedefrais
 # Déployer tout le hosting
 firebase deploy --only hosting
 
-# Déployer uniquement la cible "note2frais"
+# Déployer uniquement la cible "note2frais" (pas necessaire si site present dans firebase.json)
 firebase deploy --only hosting:note2frais
 ```

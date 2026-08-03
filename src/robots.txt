@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /n2f/
+
+Sitemap: https://note2frais.web.app/sitemap.xml
