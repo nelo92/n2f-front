@@ -6,6 +6,8 @@ export const FIELD_UID = "uid";
 export const FIELD_EMAIL = "email";
 export const FIELD_PWD = "pwd"; // only used for network equal to Local
 export const FIELD_NETWORK = "network";
+export const FIELD_NAME = "admin";
+export const FIELD_LAST_CONNECTION = "lastConnection";
 
 // collection 
 export const COLLECTION_DATAS = "datas";

@@ -4,9 +4,12 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { Network, User } from 'src/app/shared/models/firebase.models';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Network, User, UserId } from 'src/app/shared/models/firebase.models';
 import { v4 as uuidv4 } from 'uuid';
 import * as FirebaseConstants from '../../shared/constants/firebase.constants';
+import { ADMIN_EMAIL } from 'src/app/shared/constants';
 
 @Injectable({
   providedIn: "root",
@@ -37,6 +40,11 @@ export class AuthService {
     return JSON.parse(localStorage.getItem("user")) !== null;
   }
 
+  // returns true when logged in user is the admin user
+  isUserAdmin(): boolean {
+    return this.userData?.email === ADMIN_EMAIL;
+  }
+
   private login(user) {
     this.userData = user;
     localStorage.setItem("user", JSON.stringify(user));
@@ -60,6 +68,21 @@ export class AuthService {
     this.logout();
   }
 
+  // returns all users stored in Firestore, for the admin page
+  getAllUsers(): Observable<UserId[]> {
+    const userCollection: AngularFirestoreCollection<User> =
+      this.afs.collection(FirebaseConstants.COLLECTION_USERS);
+    return userCollection.snapshotChanges().pipe(
+      map((actions) =>
+        actions.map((a) => {
+          const user = a.payload.doc.data() as User;
+          const id = a.payload.doc.id;
+          return { id, ...user };
+        })
+      )
+    );
+  }
+
   async isExistUserEmailNetwork( email: string, network: Network ): Promise<boolean> {
     const userCollection: AngularFirestoreCollection<User> =
       this.afs.collection(FirebaseConstants.COLLECTION_USERS, (ref) => ref
@@ -80,6 +103,7 @@ export class AuthService {
       email: user.email,
       pwd: user.pwd ? user.pwd : null,
       network: network,
+      lastConnection: firebase.firestore.Timestamp.now(),
     };
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `${FirebaseConstants.COLLECTION_USERS}/${user.uid}`
@@ -101,6 +125,7 @@ export class AuthService {
       email: email,
       pwd: pwd,
       network: Network.Local,
+      lastConnection: firebase.firestore.Timestamp.now(),
     };
     this.loginWithRedirection(user, Network.Local);
   }

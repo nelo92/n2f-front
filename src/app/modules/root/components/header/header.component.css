@@ -1,3 +1,13 @@
 .btn-sign-out {
   padding: 0.1rem 0.3rem;
 }
+
+.navbar-nav .nav-link {
+  border-bottom: 3px solid transparent;
+  padding-bottom: 0rem;
+}
+
+.navbar-nav .nav-link.active {
+  border-bottom-color: #6c757d;
+  padding-bottom: 0rem;
+}

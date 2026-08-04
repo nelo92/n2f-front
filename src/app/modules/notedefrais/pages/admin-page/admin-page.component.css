@@ -4,8 +4,7 @@ table {
   font-family: inherit;
 }
 td.mat-cell,
-th.mat-header-cell,
-td.mat-footer-cell {
+th.mat-header-cell {
   border: 1px solid #e2e3e5;
   text-align: center;
   font-family: inherit;
@@ -15,11 +14,7 @@ td.mat-footer-cell {
 th.mat-header-cell {
   background-color: #d6d8d9;
   color: black;
-}
-
-td.mat-footer-cell {
-  background-color: #e2e3e5;
-  color: black;
+  font-weight: bold;
 }
 
 ::ng-deep .mat-sort-header-container {
@@ -35,4 +30,8 @@ tr.mat-row:hover {
 
 .card-body {
   background-color:#d6d8d9;
-} 
+}
+
+.user-count {
+  font-size: 14px;
+}

@@ -10,9 +10,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() appName: string;
 
-  constructor(
-    public authService: AuthService,
-  ) { }
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
   }

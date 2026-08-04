@@ -2,6 +2,14 @@
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    padding-bottom: 50px;
+}
+
 .datepicker {
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
@@ -53,6 +61,16 @@
 
 .container.wlogin {
     width:360px;
+}
+
+.card, .card-body {
+    border-radius: 10px;
+}
+
+.table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e2e3e5;
 }
 
 .fs-12{

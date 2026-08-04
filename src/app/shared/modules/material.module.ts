@@ -6,6 +6,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
@@ -55,8 +58,11 @@ export const MY_FORMATS_YYYY = {
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
-  ], 
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
+  ],
   providers: [
     {
       provide: DateAdapter,

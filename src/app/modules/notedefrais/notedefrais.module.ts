@@ -4,6 +4,7 @@ import { InputPageComponent } from './pages/input-page/input-page.component';
 import { ViewPageComponent } from './pages/view-page/view-page.component';
 import { NoteDeFraisRoutingModule } from './notedefrais-routing.module';
 import { ChartPageComponent } from './pages/chart-page/chart-page.component';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ChartsModule } from 'ng2-charts';
   declarations: [
     InputPageComponent,
     ViewPageComponent,
-    ChartPageComponent
+    ChartPageComponent,
+    AdminPageComponent
   ]
 })
 export class NotedefraisModule { }
