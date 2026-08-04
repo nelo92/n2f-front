@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="d-flex flex-column justify-content-center">
+    <div>
+      <div class="card my-2">
+        <div class="card-body">
+          <h4>Users</h4>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="lastConnection" matSortDirection="desc">
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let user">{{user.email}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastConnection">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Last connection</th>
+          <td mat-cell *matCellDef="let user">{{user.lastConnection?.toDate() | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

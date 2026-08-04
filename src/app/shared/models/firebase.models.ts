@@ -15,6 +15,12 @@ export interface User {
   email: string;
   pwd: string;
   network: Network;
+  lastConnection: firebase.firestore.Timestamp;
+  // optional field for admin user
+  admin?: boolean;
+}
+export interface UserId extends User {
+  id: string;
 }
 
 export interface Data {
