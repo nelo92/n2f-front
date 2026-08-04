@@ -33,7 +33,7 @@ build/
 ## Firebase ###
 .firebase
 .firebaserc
-firebase.json
+#firebase.json
 firebase.config.ts
 firebase-debug.log
 
