@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl } from "@angular/forms";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import {
   MatDatepicker,
@@ -25,7 +25,7 @@ export class ChartPageComponent implements OnInit {
   totals: number[];
   totals_test: number[] = [3, 1, 4, 2, 5, 6, 2];
 
-  date = new FormControl(moment());
+  date = new FormControl(moment(), Validators.required);
 
   public lineChartType = "line";
   public lineChartLabels: any[] = [
@@ -81,6 +81,9 @@ export class ChartPageComponent implements OnInit {
   }
 
   onChangeDate(e: MatDatepickerInputEvent<Date>) {
+    if (!this.date.value) {
+      this.date.setValue(moment());
+    }
     this.loadDatas();
   }
 

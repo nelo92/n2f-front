@@ -4,12 +4,14 @@
       <div class="card my-2">
         <div class="card-body">
           <div>
-            <label for="date" class="mr-2">Mois: </label>
-            <input id="date" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)" placeholder="yyyy"
-              maxlength="4" tabindex="1" autocomplete="off" required>
+            <label for="date" class="mr-2">Year: </label>
+            <input id="date" class="datepicker" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)" placeholder="yyyy"
+              maxlength="4" tabindex="1" autocomplete="off" required
+              [ngClass]="{ 'is-invalid': (date.dirty || date.touched) && date.hasError('required') }">
             <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp panelClass="panel-year-picker" startView="multi-year" (yearSelected)="chosenYearHandler($event, dp)">
-            </mat-datepicker>           
+            </mat-datepicker>
+            <div class="invalid-feedback" *ngIf="(date.dirty || date.touched) && date.hasError('required')">Year required.</div>
           </div>
         </div>
       </div>
