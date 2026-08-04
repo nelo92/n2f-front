@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { UntypedFormBuilder, Validators } from "@angular/forms";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { NotedefraisService } from 'src/app/modules/notedefrais/services/notedefrais.service';
@@ -27,7 +27,7 @@ export class InputPageComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private noteDeFraisService: NotedefraisService,
     private authService: AuthService
   ) { }

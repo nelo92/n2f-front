@@ -6,7 +6,7 @@ Application de gestion de notes de frais : saisie des dépenses, visualisation p
 
 ## Stack technique
 
-- Angular 12 (Angular Material, Angular Flex Layout, Bootstrap)
+- Angular 14 (Angular Material, Angular Flex Layout, Bootstrap)
 - Firebase (auth, hosting, données) via `@angular/fire`
 - Chart.js / ng2-charts pour les graphiques
 

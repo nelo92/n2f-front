@@ -50,3 +50,7 @@
 ## v2.1.3
 
 * fix update date input fields to require year/month and add validation feedback
+
+## v2.1.4
+
+* Migrate Angular 12 to Angular 14, for compatibility Nodejs 18 (because firebase command need it)
