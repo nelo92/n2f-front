@@ -54,6 +54,12 @@ npm start        # lance le serveur de dev (ng serve)
 | Production | https://note2frais.web.app / https://note2frais.firebaseapp.com |
 | Legacy / ancien domaine | https://nodedefrais.web.app / https://nodedefrais.firebaseapp.com |
 
+## Référencement
+
+- `src/robots.txt` et `src/sitemap.xml` : servis à la racine (`/robots.txt`, `/sitemap.xml`) via les `assets` du build Angular.
+- Balise de vérification `google-site-verification` présente dans `src/index.html`.
+- Sites déclarés sur [Google Search Console](https://search.google.com/search-console) et [Bing Webmaster Tools](https://www.bing.com/webmasters) pour le suivi de l'indexation.
+
 ## [Commandes Firebase](./docs/firebase-command.md)
 
 ## [Notes de version](./docs/release-notes.md)

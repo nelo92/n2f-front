@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "note2frais",
+    "public": "dist/n2f",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

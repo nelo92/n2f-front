@@ -42,3 +42,7 @@
 ## v2.1.1
 
 * Refonte de la documentation
+
+## v2.1.2
+
+* Référencement : robots.txt, sitemap.xml, balises de vérification Google Search Console / Bing Webmaster Tools
