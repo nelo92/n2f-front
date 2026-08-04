@@ -54,3 +54,8 @@
 ## v2.1.4
 
 * Migrate Angular 12 to Angular 14, for compatibility Nodejs 18 (because firebase command need it)
+
+## v2.1.5
+
+* Review UI design
+* Add feature admin
