@@ -1,10 +1,13 @@
 import { Util } from './../../../../shared/utils/util';
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { UntypedFormBuilder, UntypedFormControl, Validators } from "@angular/forms";
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import moment, { Moment } from "moment";
 import { Observable } from "rxjs";
 import { AuthService } from "src/app/modules/auth/auth.service";
@@ -22,8 +25,11 @@ const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
   styleUrls: ["./view-page.component.css"],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }]
 })
-export class ViewPageComponent implements OnInit {
+export class ViewPageComponent implements OnInit, AfterViewInit {
   date = new UntypedFormControl(moment(), Validators.required);
+
+  displayedColumns: string[] = ["date", "amount", "actions"];
+  dataSource = new MatTableDataSource<any>([]);
 
   datas$: Observable<any[]>;
   datas: any[];
@@ -31,15 +37,34 @@ export class ViewPageComponent implements OnInit {
   total: number = 0;
   displayTotal = false;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
     private fb: UntypedFormBuilder,
     public dialog: MatDialog,
     private noteDeFraisService: NotedefraisService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.dataSource.sortingDataAccessor = (data: any, property: string) => {
+      switch (property) {
+        case "date":
+          return data.date ? data.date.toMillis() : 0;
+        case "amount":
+          return Util.stringToNumber(data.amount);
+        default:
+          return data[property];
+      }
+    };
+  }
 
   ngOnInit() {
     this.loadDatas();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   onChangeDate(e: MatDatepickerInputEvent<Date>) {
@@ -112,6 +137,10 @@ export class ViewPageComponent implements OnInit {
       this.datas$ = this.noteDeFraisService.get(new Date(value), user.uid);
       this.datas$.subscribe((datas) => {
         this.datas = datas;
+        this.dataSource.data = datas;
+        if (this.paginator) {
+          this.paginator.firstPage();
+        }
         this.countTotal(this.datas);
       });
     }

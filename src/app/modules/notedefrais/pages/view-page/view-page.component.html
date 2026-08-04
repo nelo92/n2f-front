@@ -22,26 +22,36 @@
       </div>
     </div>
     <div class="table-wrapper">
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Amount</th>
-          <th></th>
-        </tr>
-        <tr *ngFor="let data of datas$ | async">
-          <td>{{data.date.toDate() | date:'dd/MM/yyyy'}}</td>
-          <td>{{data.amount}} €</td>
-          <td>
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="date" matSortDirection="asc">
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+          <td mat-cell *matCellDef="let data">{{data.date.toDate() | date:'dd/MM/yyyy'}}</td>
+          <td mat-footer-cell *matFooterCellDef class="font-weight-bold">Total</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+          <td mat-cell *matCellDef="let data">{{data.amount}} €</td>
+          <td mat-footer-cell *matFooterCellDef class="font-weight-bold text-danger"> {{total}} €</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let data">
             <span class="d-none">{{data.id}}</span>
             <button type="button" class="btn btn-sm btn-danger m-1" (click)="delete(data)">Delete</button>
           </td>
-        </tr>
-        <tr *ngIf="displayTotal">
-          <td class="font-weight-bold">Total</td>
-          <td class="font-weight-bold text-danger"> {{total}} €</td>
-          <td><button type="button" class="btn btn-sm btn-secondary m-1" (click)="deleteAll()">Delete All</button></td>
-        </tr>
+          <td mat-footer-cell *matFooterCellDef>
+            <button type="button" class="btn btn-sm btn-secondary m-1" (click)="deleteAll()">Delete All</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns" [class.d-none]="!displayTotal"></tr>
       </table>
     </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
   </div>
 </div>
