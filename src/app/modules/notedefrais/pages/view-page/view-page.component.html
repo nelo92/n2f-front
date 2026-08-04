@@ -5,13 +5,15 @@
       <div class="card my-2">
         <div class="card-body">
           <div>
-            <label for="date" class="mr-2">Mois: </label>
-            <input id="date" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)"
-              placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required>
+            <label for="date" class="mr-2">Month: </label>
+            <input id="date" class="datepicker" [matDatepicker]="dp" [formControl]="date" (dateChange)="onChangeDate($event)"
+              placeholder="mm/yyyy" maxlength="7" tabindex="1" autocomplete="off" required
+              [ngClass]="{ 'is-invalid': (date.dirty || date.touched) && date.hasError('required') }">
             <mat-datepicker-toggle [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp panelClass="panel-month-picker" startView="multi-year" (yearSelected)="chosenYearHandler($event)"
               (monthSelected)="chosenMonthHandler($event, dp)">
             </mat-datepicker>
+            <div class="invalid-feedback" *ngIf="(date.dirty || date.touched) && date.hasError('required')">Month required.</div>
           </div>
           <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-primary btn-sm" (click)="onExport()">Export</button>

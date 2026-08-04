@@ -46,3 +46,7 @@
 ## v2.1.2
 
 * Référencement : robots.txt, sitemap.xml, balises de vérification Google Search Console / Bing Webmaster Tools
+
+## v2.1.3
+
+* fix update date input fields to require year/month and add validation feedback
