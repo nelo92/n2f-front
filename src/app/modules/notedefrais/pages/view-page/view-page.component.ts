@@ -1,7 +1,7 @@
 import { Util } from './../../../../shared/utils/util';
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormControl, Validators } from "@angular/forms";
 import { MAT_DATE_FORMATS } from "@angular/material/core";
 import { MatDatepicker, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { MatDialog } from "@angular/material/dialog";
@@ -23,7 +23,7 @@ const MESSAGE_DELETE_ALL = "Are you sure want to delete everything?";
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_FORMATS_MM_YYYY }]
 })
 export class ViewPageComponent implements OnInit {
-  date = new FormControl(moment(), Validators.required);
+  date = new UntypedFormControl(moment(), Validators.required);
 
   datas$: Observable<any[]>;
   datas: any[];
@@ -32,7 +32,7 @@ export class ViewPageComponent implements OnInit {
   displayTotal = false;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public dialog: MatDialog,
     private noteDeFraisService: NotedefraisService,
     private authService: AuthService

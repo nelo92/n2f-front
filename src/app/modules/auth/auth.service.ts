@@ -1,8 +1,9 @@
 import { Injectable, NgZone } from '@angular/core';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { auth } from 'firebase/app';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import { Network, User } from 'src/app/shared/models/firebase.models';
 import { v4 as uuidv4 } from 'uuid';
 import * as FirebaseConstants from '../../shared/constants/firebase.constants';
@@ -132,7 +133,7 @@ export class AuthService {
   // auth with Google
   login_with_google() {
     this.afAuth
-      .signInWithPopup(new auth.GoogleAuthProvider())
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((result) => {     
         this.loginWithRedirection(result.user, Network.Google);
       });
@@ -141,7 +142,7 @@ export class AuthService {
   // auth with Facebook
   login_with_facebook() {
     this.afAuth
-      .signInWithPopup(new auth.FacebookAuthProvider())
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then((result) => {   
         this.loginWithRedirection(result.user, Network.Facebook);
       });

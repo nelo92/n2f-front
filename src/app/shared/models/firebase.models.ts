@@ -1,4 +1,5 @@
-import { firestore } from "firebase";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
 
 export enum Network {  
   Local ='Local',
@@ -18,7 +19,7 @@ export interface User {
 
 export interface Data {
   user_uid: string;
-  date: firestore.Timestamp;
+  date: firebase.firestore.Timestamp;
   amount: string;
 }
 export interface DataId extends Data {

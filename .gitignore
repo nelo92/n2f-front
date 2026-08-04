@@ -1,3 +1,4 @@
+/.angular/cache
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

@@ -26,7 +26,6 @@ import { MaterialModule } from './modules/material.module';
         MessageComponent,
         ConfirmDialogComponent,
     ],
-    entryComponents: [ConfirmDialogComponent],
     providers: [NotedefraisService]
 })
 export class SharedModule { }

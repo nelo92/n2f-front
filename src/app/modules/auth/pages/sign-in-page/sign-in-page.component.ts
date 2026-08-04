@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth/auth.service';
 import { MessageComponent } from 'src/app/shared/components/message/message.component';
@@ -16,14 +16,14 @@ export class SignInPageComponent implements OnInit {
 
   @ViewChild(MessageComponent) message: MessageComponent;
 
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   loading = false;
   submitted = false;
 
   constructor(
     public authService: AuthService,
     public router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
   ) { }
 
   ngOnInit(): void {

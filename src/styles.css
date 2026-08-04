@@ -1,6 +1,6 @@
 /* Add application styles & imports to this file! */
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .datepicker {
     height: calc(1.5em + .75rem + 2px);
