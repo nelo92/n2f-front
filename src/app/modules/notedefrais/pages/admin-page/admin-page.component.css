@@ -31,3 +31,7 @@ tr.mat-row:hover {
 .card-body {
   background-color:#d6d8d9;
 }
+
+.user-count {
+  font-size: 14px;
+}
