@@ -39,7 +39,7 @@
     "deploy": "ng build --configuration production && firebase deploy --only hosting"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.2.13",
+    "@angular-devkit/build-angular": "^21.2.24",
     "@angular/cli": "^14.2.13",
     "@angular/compiler-cli": "^14.3.0",
     "@angular/language-service": "^14.3.0",
