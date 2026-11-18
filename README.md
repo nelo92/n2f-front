@@ -65,3 +65,5 @@ npm start        # lance le serveur de dev (ng serve)
 ## [Notes de version](./docs/release-notes.md)
 
 ## [Suivi de projet Trello](https://trello.com/b/OOIcPt5F/n2f-notedefrais)
+
+## [Référencement (SEO) Google et Bing](./docs/referencement-seo.md)
