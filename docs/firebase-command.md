@@ -6,7 +6,7 @@ Documentation officielle : https://firebase.google.com/docs/cli?hl=fr#mac-linux-
 
 | Outil | Version |
 |---|---|
-| Node.js | 18 |
+| Node.js | 18 ou 20 |
 | firebase-tools | via npm (voir installation) |
 
 ## Installation
